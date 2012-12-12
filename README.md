@@ -1,7 +1,7 @@
 indentLine
 ==========
 
-This plugin is used for displaying thin vertical lines at each indentation leve for code indented with spaces.
+This plugin is used for displaying thin vertical lines at each indentation level for code indented with spaces.
 For code indented with tabs, I think there is no need to support it, using :set list lcs=tab:\\|\ (here is a space) can 
 achieve it.
 
