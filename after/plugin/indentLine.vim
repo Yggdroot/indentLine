@@ -9,6 +9,10 @@ if !has("conceal") || exists("g:loaded_indentLine")
     finish
 endif
 let g:loaded_indentLine = 1
+if !exists("g:indentLine_char")
+    " | ┆ │
+    let g:indentLine_char = "┆"
+endif
 
 set conceallevel=2
 set concealcursor=inc
@@ -24,8 +28,7 @@ endfunction
 
 function! <SID>SetIndentLine()
     for i in range(&shiftwidth+1, 100, &shiftwidth)
-        " | ┆ │
-        exe 'syn match IndentLine /\(^\s\+\)\@<=\%'.i.'v / containedin=ALL conceal cchar=┆'
+        exe 'syn match IndentLine /\(^\s\+\)\@<=\%'.i.'v / containedin=ALL conceal cchar=' . g:indentLine_char
     endfor
 endfunction
 
