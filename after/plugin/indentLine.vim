@@ -15,9 +15,10 @@ set concealcursor=inc
 
 function! <SID>InitColor()
     if &bg == 'light'
-        hi Conceal ctermfg=7 ctermbg=NONE guifg=Grey guibg=NONE
+        " ctermfg= 039, 234
+        hi Conceal ctermfg=039 ctermbg=NONE guifg=Grey guibg=NONE
     else
-        hi Conceal ctermfg=8 ctermbg=NONE guifg=Grey40 guibg=NONE
+        hi Conceal ctermfg=235 ctermbg=NONE guifg=Grey40 guibg=NONE
     endif
 endfunction
 
