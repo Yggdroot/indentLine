@@ -14,7 +14,7 @@ if !exists("g:indentLine_char")
     let g:indentLine_char = "┆"
 endif
 
-set conceallevel=2
+set conceallevel=1
 set concealcursor=inc
 
 function! <SID>InitColor()
