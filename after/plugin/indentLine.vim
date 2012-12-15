@@ -7,7 +7,7 @@
 
 if !has("conceal") || exists("g:loaded_indentLine")
     finish
-endif 
+endif
 let g:loaded_indentLine = 1
 
 set conceallevel=2
