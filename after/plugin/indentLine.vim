@@ -24,7 +24,8 @@ endfunction
 
 function! <SID>SetIndentLine()
     for i in range(&shiftwidth+1, 100, &shiftwidth)
-        exe 'syn match IndentLine /\(^\s\+\)\@<=\%'.i.'v / containedin=ALL conceal cchar=|'
+        " | ┆ │
+        exe 'syn match IndentLine /\(^\s\+\)\@<=\%'.i.'v / containedin=ALL conceal cchar=┆'
     endfor
 endfunction
 
