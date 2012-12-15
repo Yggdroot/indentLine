@@ -7,23 +7,28 @@
 
 if !has("conceal") || exists("g:loaded_indentLine")
     finish
-endif 
+endif
 let g:loaded_indentLine = 1
+if !exists("g:indentLine_char")
+    " | ┆ │
+    let g:indentLine_char = "┆"
+endif
 
-set conceallevel=2
+set conceallevel=1
 set concealcursor=inc
 
 function! <SID>InitColor()
     if &bg == 'light'
-        hi Conceal ctermfg=7 ctermbg=NONE guifg=Grey guibg=NONE
+        " ctermfg= 039, 234
+        hi Conceal ctermfg=039 ctermbg=NONE guifg=Grey guibg=NONE
     else
-        hi Conceal ctermfg=8 ctermbg=NONE guifg=Grey40 guibg=NONE
+        hi Conceal ctermfg=235 ctermbg=NONE guifg=Grey40 guibg=NONE
     endif
 endfunction
 
 function! <SID>SetIndentLine()
     for i in range(&shiftwidth+1, 100, &shiftwidth)
-        exe 'syn match IndentLine /\(^\s\+\)\@<=\%'.i.'v / containedin=ALL conceal cchar=|'
+        exe 'syn match IndentLine /\(^\s\+\)\@<=\%'.i.'v / containedin=ALL conceal cchar=' . g:indentLine_char
     endfor
 endfunction
 
