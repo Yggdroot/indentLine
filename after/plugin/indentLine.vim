@@ -13,17 +13,27 @@ if !exists("g:indentLine_char")
     " | ┆ │
     let g:indentLine_char = "┆"
 endif
+if !exists("g:indentLine_color_term")
+    if &bg =~? "light"
+        let g:indentLine_color_term = 235
+    else
+        let g:indentLine_color_term = 039
+    endif
+endif
+if !exists("g:indentLine_color_gui")
+    if &bg =~? "light"
+        let g:indentLine_color_gui = "Grey"
+    else
+        let g:indentLine_color_gui = "Grey40"
+    endif
+endif
 
 set conceallevel=1
 set concealcursor=inc
 
 function! <SID>InitColor()
-    if &bg == 'light'
-        " ctermfg= 039, 234
-        hi Conceal ctermfg=039 ctermbg=NONE guifg=Grey guibg=NONE
-    else
-        hi Conceal ctermfg=235 ctermbg=NONE guifg=Grey40 guibg=NONE
-    endif
+    exec "hi Conceal ctermfg=" . g:indentLine_color_term . " ctermbg=NONE cterm=bold" .
+                \ " guifg=" . g:indentLine_color_gui .  " guibg=NONE"
 endfunction
 
 function! <SID>SetIndentLine()
