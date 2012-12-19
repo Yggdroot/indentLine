@@ -1,0 +1,47 @@
+*indentLine.txt*        Show vertical lines for indent with conceal feature
+
+CONTENTS                                        *indentLine-contents*
+Introduction                                    |indentLine-introduction|
+Config                                          |indentLine-config|
+FAQ			                        |indentLine-faq|
+Changelog		                        |indentLine-changelog|
+
+==============================================================================
+INTRODUCTION                                    *indentLine-introduction*
+
+==============================================================================
+CONFIG						*indentLine-config*
+
+------------------------------------------------------------------------------
+VARIABLES					*indentLine-variables*
+
+g:loaded_indentLine				*g:loaded_indentLine*
+		Whether load indentLine plugin.
+		Default value is 0.
+	
+g:indentLine_char				*g:indentLine_char*
+		Specify a character to be used as indent line.
+		You also can use other characters:
+		  | ┆ │
+		Default value is "┆".
+	
+g:indentLine_color_term			        *g:indentLine_color_term*
+		Specify terminal vim indent line color.
+		Default value is 238.
+	
+g:indentLine_color_gui				*g:indentLine_color_gui*
+		Specify GUI vim indent line color.
+		Default value is "Grey".
+	
+g:indentLine_indentLevel			*g:indentLine_indentLevel*
+		Specify how much indent level do you want to use for
+		indentLine. Most program will not has bigger indent level than
+		10.
+		Default value is 10.
+
+
+==============================================================================
+FAQ						 *indentLine-faq*
+
+==============================================================================
+vim:tw=78:ts=8:ft=help:norl:noet:fen:fdl=0
