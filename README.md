@@ -17,6 +17,13 @@ For gvim, hi Conceal guifg=(color you like) guibg=NONE
 
 For vim, hi Conceal ctermfg=(color you like) ctermbg=NONE
 
+You can change indentline char by youself.
+change this variable:
+
+```vim
+let g:indentLine_char = "│"
+```
+
 ## Screenshots
 <img src="http://i.imgur.com/WQqhH.jpg" width="600" height="400" alt="" />
 <img src="http://i.imgur.com/zhV1v.jpg" width="600" height="400" alt="" />
