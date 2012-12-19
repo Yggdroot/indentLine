@@ -49,3 +49,6 @@ endfunction
 
 autocmd BufRead * call <SID>SetIndentLine()
 autocmd BufRead,ColorScheme * call <SID>InitColor()
+
+
+" vim:et:ts=4:sw=4:fdm=marker:fmr={{{,}}}
