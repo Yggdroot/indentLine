@@ -37,7 +37,7 @@ function! <SID>InitColor()
 endfunction
 
 function! <SID>SetIndentLine()
-    for i in range(&shiftwidth+1, 100, &shiftwidth)
+    for i in range(&l:shiftwidth+1, 100, &shiftwidth)
         exe 'syn match IndentLine /\(^\s\+\)\@<=\%'.i.'v / containedin=ALL conceal cchar=' . g:indentLine_char
     endfor
 endfunction
