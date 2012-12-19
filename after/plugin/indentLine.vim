@@ -28,6 +28,10 @@ if !exists("g:indentLine_color_gui")
     endif
 endif
 
+if !exists("g:indentLine_indentLevel")
+    let g:indentLine_indentLevel = 10
+endif
+
 set conceallevel=1
 set concealcursor=inc
 
@@ -37,8 +41,9 @@ function! <SID>InitColor()
 endfunction
 
 function! <SID>SetIndentLine()
-    for i in range(&l:shiftwidth+1, 100, &l:shiftwidth)
-        exe 'syn match IndentLine /\(^\s\+\)\@<=\%'.i.'v / containedin=ALL conceal cchar=' . g:indentLine_char
+    let space = &l:shiftwidth
+    for i in range(space+1, space * g:indentLine_indentLevel + 1, space)
+        exec 'syn match IndentLine /\(^\s\+\)\@<=\%'.i.'v / containedin=ALL conceal cchar=' . g:indentLine_char
     endfor
 endfunction
 
