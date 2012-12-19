@@ -15,7 +15,7 @@ if !exists("g:indentLine_char")
 endif
 if !exists("g:indentLine_color_term")
     if &bg =~? "light"
-        let g:indentLine_color_term = 235
+        let g:indentLine_color_term = 238
     else
         let g:indentLine_color_term = 039
     endif
