@@ -26,6 +26,6 @@ You can change indentline char by youself.
 change this variable:
 
 ## Screenshots
-<img src="http://imgur.com/Ge4nJ" width="600" height="400" alt="" />
+<img src="http://i.imgur.com/Ge4nJ.png" width="600" height="400" alt="" />
 
 
