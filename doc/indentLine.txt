@@ -22,22 +22,22 @@ g:loaded_indentLine				*g:loaded_indentLine*
 g:indentLine_char				*g:indentLine_char*
 		Specify a character to be used as indent line.
 		You also can use other characters:
-		  | ┆ │
-		Default value is "┆".
+		  | ¦ ┆ │
+		Default value is "|".
 	
 g:indentLine_color_term			        *g:indentLine_color_term*
 		Specify terminal vim indent line color.
-		Default value is 238.
+		
 	
 g:indentLine_color_gui				*g:indentLine_color_gui*
 		Specify GUI vim indent line color.
-		Default value is "Grey".
+		
 	
 g:indentLine_indentLevel			*g:indentLine_indentLevel*
 		Specify how much indent level do you want to use for
 		indentLine. Most program will not has bigger indent level than
-		10.
-		Default value is 10.
+		20.
+		Default value is 20.
 
 
 ==============================================================================
