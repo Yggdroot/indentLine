@@ -53,8 +53,16 @@ function! <SID>SetIndentLine()
     endfor
 endfunction
 
+function! <SID>ResetWidth(...)
+    if a:0 > 0
+        let &l:shiftwidth = a:1
+    endif
+    syn clear IndentLine
+    call <SID>SetIndentLine()
+endfunction
+
 autocmd BufRead * call <SID>SetIndentLine()
 autocmd BufRead,ColorScheme * call <SID>InitColor()
-
+command! -nargs=? ResetIndentLines call <SID>ResetWidth(<f-args>)
 
 " vim:et:ts=4:sw=4:fdm=marker:fmr={{{,}}}
