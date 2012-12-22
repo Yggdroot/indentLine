@@ -1,7 +1,3 @@
-NOTE
-====
-This is an improve version of original plugin.
-The original version plugin is at here https://github.com/Yggdroot/indentLine.git
 
 indentLine
 ==========
