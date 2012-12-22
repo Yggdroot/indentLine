@@ -24,8 +24,12 @@ For vim, hi Conceal ctermfg=(color you like) ctermbg=NONE
 
 You can change indentline char by youself.
 change this variable:
+let g:indentLine_char = 'c'
+'c' can be any ascii character you like, you can also use '¦', '┆' to display more beautiful lines, 
+but this only aplies to file whose encoding is utf-8
 
 ## Screenshots
-<img src="http://i.imgur.com/Ge4nJ.png" width="800" height="600" alt="" />
-
+<img src="http://i.imgur.com/WQqhH.jpg" width="800" height="600" alt="" />
+<img src="http://i.imgur.com/zhV1v.jpg" width="800" height="600" alt="" />
+<img src="http://i.imgur.com/cENlq.jpg" width="800" height="600" alt="" />
 
