@@ -1,3 +1,8 @@
+NOTE
+====
+This is an improve version of original plugin.
+The original version plugin is at here https://github.com/Yggdroot/indentLine.git
+
 indentLine
 ==========
 
@@ -17,9 +22,10 @@ For gvim, hi Conceal guifg=(color you like) guibg=NONE
 
 For vim, hi Conceal ctermfg=(color you like) ctermbg=NONE
 
+You can change indentline char by youself.
+change this variable:
+
 ## Screenshots
-<img src="http://i.imgur.com/WQqhH.jpg" width="600" height="400" alt="" />
-<img src="http://i.imgur.com/zhV1v.jpg" width="600" height="400" alt="" />
-<img src="http://i.imgur.com/cENlq.jpg" width="600" height="400" alt="" />
+<img src="http://i.imgur.com/Ge4nJ.png" width="800" height="600" alt="" />
 
 
