@@ -9,6 +9,7 @@ if !has("conceal") || exists("g:loaded_indentLine")
     finish
 endif
 let g:loaded_indentLine = 1
+
 if !exists("g:indentLine_char")
     " | ¦ ┆  │
     let g:indentLine_char = "|"
