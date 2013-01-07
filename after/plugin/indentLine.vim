@@ -1,6 +1,6 @@
 " Script Name: indentLine.vim
-" Version:     1.0.2
-" Last Change: Dec 22, 2012
+" Version:     1.0.3
+" Last Change: Dec 25, 2012
 " Author:      Yggdroot <archofortune@gmail.com>
 "
 " Description: To show the indent line
@@ -12,7 +12,11 @@ let g:loaded_indentLine = 1
 
 if !exists("g:indentLine_char")
     " | ¦ ┆  │
-    let g:indentLine_char = "|"
+    if &encoding ==? "utf-8"
+        let g:indentLine_char = "¦"
+    else
+        let  g:indentLine_char = "|"
+    endif
 endif
 
 if !exists("g:indentLine_indentLevel")
@@ -35,7 +39,7 @@ function! <SID>InitColor()
 
     if !exists("g:indentLine_color_gui")
         if &bg ==? "light"
-            let gui_color = "Grey"
+            let gui_color = "Grey65"
         else
             let gui_color = "Grey40"
         endif
