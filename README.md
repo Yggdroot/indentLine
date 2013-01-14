@@ -21,6 +21,9 @@ change this variable: let g:indentLine_char = 'c';
 'c' can be any ascii character you like, you can also use '¦', '┆' to display more beautiful lines, 
 but this only aplies to file whose encoding is utf-8
 
+##Self promotion
+If you think this script is helpful, follow the GitHub repository, and don't forget to vote for it on Vim.org! (vimscript #4354).
+
 ## Screenshots
 <img src="http://i.imgur.com/KVi0T.jpg" width="800" height="600" alt="" />
 
