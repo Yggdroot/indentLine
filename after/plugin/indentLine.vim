@@ -5,10 +5,10 @@
 "
 " Description: To show the indent line
 
-if !has("conceal") || exists("g:loaded_indentLine")
+if !has("conceal") || exists("g:indentLine_loaded")
     finish
 endif
-let g:loaded_indentLine = 1
+let g:indentLine_loaded = 1
 
 if !exists("g:indentLine_char")
     " | ¦ ┆  │
@@ -23,15 +23,19 @@ if !exists("g:indentLine_indentLevel")
     let g:indentLine_indentLevel = 20
 endif
 
+if !exists("g:indentLine_enabled")
+    let g:indentLine_enabled = 1
+endif
+
 set conceallevel=1
 set concealcursor=inc
 
 function! <SID>InitColor()
     if !exists("g:indentLine_color_term")
         if &bg ==? "light"
-            let term_color = 238
+            let term_color = 249
         else
-            let term_color = 039
+            let term_color = 239
         endif
     else
         let term_color = g:indentLine_color_term
@@ -39,9 +43,9 @@ function! <SID>InitColor()
 
     if !exists("g:indentLine_color_gui")
         if &bg ==? "light"
-            let gui_color = "Grey65"
+            let gui_color = "Grey70"
         else
-            let gui_color = "Grey40"
+            let gui_color = "Grey30"
         endif
     else
         let gui_color = g:indentLine_color_gui
@@ -52,6 +56,10 @@ function! <SID>InitColor()
 endfunction
 
 function! <SID>SetIndentLine()
+    if !exists("b:indentLine_enabled")
+        let b:indentLine_enabled = g:indentLine_enabled
+    endif
+
     let space = &l:shiftwidth
     for i in range(space+1, space * g:indentLine_indentLevel + 1, space)
         exec 'syn match IndentLine /\(^\s\+\)\@<=\%'.i.'v / containedin=ALL conceal cchar=' . g:indentLine_char
@@ -66,8 +74,27 @@ function! <SID>ResetWidth(...)
     call <SID>SetIndentLine()
 endfunction
 
-autocmd BufRead * call <SID>SetIndentLine()
+function! <SID>IndentLinesToggle()
+    if b:indentLine_enabled
+        let b:indentLine_enabled = 0
+        syn clear IndentLine
+    else
+        let b:indentLine_enabled = 1
+        call <SID>SetIndentLine()
+    endif
+endfunction
+
+function! <SID>Setup()
+    if !exists("b:indentLine_set")
+        let b:indentLine_set = 1
+        call <SID>SetIndentLine()
+    endif
+endfunction
+
+autocmd BufWinEnter * call <SID>Setup()
 autocmd BufRead,ColorScheme * call <SID>InitColor()
+
 command! -nargs=? ResetIndentLines call <SID>ResetWidth(<f-args>)
+command! IndentLinesToggle call <SID>IndentLinesToggle()
 
 " vim:et:ts=4:sw=4:fdm=marker:fmr={{{,}}}
