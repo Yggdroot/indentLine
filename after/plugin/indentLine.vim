@@ -1,9 +1,9 @@
 " Script Name: indentLine.vim
-" Version:     1.0.3
-" Last Change: Dec 25, 2012
+" Version:     1.0.4
+" Last Change: Jan 23, 2013
 " Author:      Yggdroot <archofortune@gmail.com>
 "
-" Description: To show the indent line
+" Description: To show the indent lines
 
 if !has("conceal") || exists("g:indentLine_loaded")
     finish
@@ -94,7 +94,7 @@ endfunction
 autocmd BufWinEnter * call <SID>Setup()
 autocmd BufRead,ColorScheme * call <SID>InitColor()
 
-command! -nargs=? ResetIndentLines call <SID>ResetWidth(<f-args>)
+command! -nargs=? IndentLinesReset call <SID>ResetWidth(<f-args>)
 command! IndentLinesToggle call <SID>IndentLinesToggle()
 
 " vim:et:ts=4:sw=4:fdm=marker:fmr={{{,}}}
