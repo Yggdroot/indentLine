@@ -58,6 +58,9 @@ endfunction
 function! <SID>SetIndentLine()
     if !exists("b:indentLine_enabled")
         let b:indentLine_enabled = g:indentLine_enabled
+        if !b:indentLine_enabled
+            return
+        endif
     endif
 
     let space = &l:shiftwidth
