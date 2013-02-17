@@ -1,3 +1,4 @@
+
 indentLine
 ==========
 
@@ -11,14 +12,13 @@ This plugin takes advantage of newly provided conceal feature in Vim 7.3, so Vim
 ## Installation
 To install the plugin just put plugin files in your ~/.vim (linux) or ~/vimfiles (Windows). 
 
-## Setting custom line colors
-For gvim, hi Conceal guifg=(color you like) guibg=NONE
+## Setting custom indentLines
+You can change the color of indentLines:<br/>
+for vim, you can set g:indentLine_color_term in your vimrc, e.g. let g:indentLine_color_term = 239(any color you like),<br/>
+for gvim, you can set g:indentLine_color_gui in your vimrc, e.g. let g:indentLine_color_gui = '#A4E57E'(any color you like)
 
-For vim, hi Conceal ctermfg=(color you like) ctermbg=NONE
-
-You can change indentline char by youself.
-change this variable: let g:indentLine_char = 'c'; 
-'c' can be any ascii character you like, you can also use '¦', '┆'and '│' to display more beautiful lines, 
+You can change indentLine char by youself.<br/>
+change this variable: let g:indentLine_char = 'c'; 'c' can be any ascii character you like, you can also use '¦', '┆'and '│' to display more beautiful lines, 
 but this only aplies to file whose encoding is utf-8
 
 ##Self promotion
