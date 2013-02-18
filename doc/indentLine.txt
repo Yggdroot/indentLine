@@ -20,7 +20,7 @@ CONFIG                                          *indentLine-config*
 ==============================================================================
 VARIABLES                                       *indentLine-variables*
 
-g:loaded_indentLine                             *g:loaded_indentLine*
+g:indentLine_loaded                             *g:loaded_indentLine*
                 Whether load indentLine plugin.
                 Default value is 0.
 
@@ -44,6 +44,10 @@ g:indentLine_indentLevel                        *g:indentLine_indentLevel*
                 indentLine. Most program will not has bigger indent level than
                 20.
                 Default value is 20.
+g:indentLine_enabled
+                Specify whether to enable indentLine plugin by default.
+                If value is not 0, the plugin is on by default, otherwise off.
+                Default value is 1.
 
 
 ==============================================================================
