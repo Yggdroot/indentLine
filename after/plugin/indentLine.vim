@@ -5,6 +5,7 @@
 "
 " Description: To show the indent lines
 
+"{{{1 global variables
 if !has("conceal") || exists("g:indentLine_loaded")
     finish
 endif
@@ -30,6 +31,7 @@ endif
 set conceallevel=1
 set concealcursor=inc
 
+"{{{1 function! <SID>InitColor()
 function! <SID>InitColor()
     if !exists("g:indentLine_color_term")
         if &bg ==? "light"
@@ -55,6 +57,7 @@ function! <SID>InitColor()
     exec "hi Conceal guifg=" . gui_color .  " guibg=NONE"
 endfunction
 
+"{{{1 function! <SID>SetIndentLine()
 function! <SID>SetIndentLine()
     if !exists("b:indentLine_enabled")
         let b:indentLine_enabled = g:indentLine_enabled
@@ -69,6 +72,7 @@ function! <SID>SetIndentLine()
     endfor
 endfunction
 
+"{{{1 function! <SID>ResetWidth(...)
 function! <SID>ResetWidth(...)
     if a:0 > 0
         let &l:shiftwidth = a:1
@@ -77,6 +81,7 @@ function! <SID>ResetWidth(...)
     call <SID>SetIndentLine()
 endfunction
 
+"{{{1 function! <SID>IndentLinesToggle()
 function! <SID>IndentLinesToggle()
     if b:indentLine_enabled
         let b:indentLine_enabled = 0
@@ -87,6 +92,7 @@ function! <SID>IndentLinesToggle()
     endif
 endfunction
 
+"{{{1 function! <SID>Setup()
 function! <SID>Setup()
     if !exists("b:indentLine_set")
         let b:indentLine_set = 1
@@ -94,6 +100,7 @@ function! <SID>Setup()
     endif
 endfunction
 
+"{{{1 commands
 autocmd BufWinEnter * call <SID>Setup()
 autocmd BufRead,ColorScheme * call <SID>InitColor()
 
