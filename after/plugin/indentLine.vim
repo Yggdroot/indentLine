@@ -21,7 +21,7 @@ if !exists("g:indentLine_char")
 endif
 
 if !exists("g:indentLine_indentLevel")
-    let g:indentLine_indentLevel = 20
+    let g:indentLine_indentLevel = 10
 endif
 
 if !exists("g:indentLine_enabled")
