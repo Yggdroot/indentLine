@@ -51,18 +51,18 @@ g:indentLine_enabled                            *g:indentLine_enabled*
                 Default value is 1.
 
 g:indentLine_fileType                           *g:indentLine_fileType*
-                This variable specify a list of comma separated file types.
+                This variable specify a list of file types.
                 When opening these types of files, the plugin is enabled by
                 default.
-                e.g. let g:indentLine_fileType = '*.c,*.h'
-                Default value is "*" which means all file types is supported.
+                e.g. let g:indentLine_fileType = ['c', 'cpp']
+                Default value is [] which means all file types is supported.
 
 g:indentLine_fileTypeExclude                    *g:indentLine_fileTypeExclude*
-                This variable specify a list of comma separated file types.
+                This variable specify a list of file types.
                 When opening these types of files, the plugin is disabled by
                 default.
-                e.g. let g:indentLine_fileType = '*.txt,*.sh'
-                Default value is "" which means no file types is excluded.
+                e.g. let g:indentLine_fileType = ['text', 'sh']
+                Default value is [] which means no file types is excluded.
 
 ==============================================================================
 COMMANDS                                         *indentLine-commands*
