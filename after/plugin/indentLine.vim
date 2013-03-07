@@ -33,7 +33,7 @@ if !exists("g:indentLine_fileType")
 endif
 
 if !exists("g:indentLine_fileTypeExclude")
-    let g:indentLine_fileTypeExclude = [] 
+    let g:indentLine_fileTypeExclude = []
 endif
 
 set conceallevel=1
@@ -102,7 +102,7 @@ endfunction
 
 "{{{1 function! <SID>Setup()
 function! <SID>Setup()
-    if !exists("b:indentLine_set")
+    if !getbufvar("%","&hidden") || !exists("b:indentLine_set")
         let b:indentLine_set = 1
 
         if index(g:indentLine_fileTypeExclude, &ft) != -1
@@ -128,8 +128,8 @@ function! <SID>Setup()
 endfunction
 
 "{{{1 commands
-exec 'autocmd BufWinEnter * call <SID>Setup()'
-exec 'autocmd BufRead,ColorScheme * call <SID>InitColor()'
+autocmd BufWinEnter * call <SID>Setup()
+autocmd BufRead,ColorScheme * call <SID>InitColor()
 
 command! -nargs=? IndentLinesReset call <SID>ResetWidth(<f-args>)
 command! IndentLinesToggle call <SID>IndentLinesToggle()
