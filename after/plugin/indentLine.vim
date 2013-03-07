@@ -29,11 +29,11 @@ if !exists("g:indentLine_enabled")
 endif
 
 if !exists("g:indentLine_fileType")
-    let g:indentLine_fileType = "*"
+    let g:indentLine_fileType = []
 endif
 
 if !exists("g:indentLine_fileTypeExclude")
-    let g:indentLine_fileTypeExclude = ""
+    let g:indentLine_fileTypeExclude = [] 
 endif
 
 set conceallevel=1
@@ -105,9 +105,13 @@ function! <SID>Setup()
     if !exists("b:indentLine_set")
         let b:indentLine_set = 1
 
-        if !empty(filter(split(g:indentLine_fileTypeExclude, ','), 'v:val ==? "*.".expand("%:e:e") || v:val == "*"'))
+        if index(g:indentLine_fileTypeExclude, &ft) != -1
             return
         endif
+
+        if len(g:indentLine_fileType) != 0 && index(g:indentLine_fileType, &ft) == -1
+            return
+        end
 
         if !exists("b:indentLine_enabled")
             let b:indentLine_enabled = g:indentLine_enabled
@@ -124,8 +128,8 @@ function! <SID>Setup()
 endfunction
 
 "{{{1 commands
-exec 'autocmd BufWinEnter '.g:indentLine_fileType.' call <SID>Setup()'
-exec 'autocmd BufRead,ColorScheme '.g:indentLine_fileType.' call <SID>InitColor()'
+exec 'autocmd BufWinEnter * call <SID>Setup()'
+exec 'autocmd BufRead,ColorScheme * call <SID>InitColor()'
 
 command! -nargs=? IndentLinesReset call <SID>ResetWidth(<f-args>)
 command! IndentLinesToggle call <SID>IndentLinesToggle()
