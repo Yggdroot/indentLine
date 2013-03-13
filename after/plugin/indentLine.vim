@@ -70,7 +70,7 @@ function! <SID>SetIndentLine()
     let b:indentLine_enabled = 1
     let space = &l:shiftwidth
     for i in range(space+1, space * g:indentLine_indentLevel + 1, space)
-        exec 'syn match IndentLine /\(^\s\+\)\@<=\%'.i.'v / containedin=ALL conceal cchar=' . g:indentLine_char
+        exec 'syn match IndentLine /\(^\s\+\)\@<=\%'.i.'c / conceal cchar=' . g:indentLine_char
     endfor
 endfunction
 
