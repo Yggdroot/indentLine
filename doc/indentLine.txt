@@ -45,6 +45,12 @@ g:indentLine_indentLevel                        *g:indentLine_indentLevel*
                 10.
                 Default value is 10.
 
+g:indentLine_showFirstIndentLevel               *g:indentLine_showFirstIndentLevel*
+                Specify whether the first indent level should be shown.
+                This is useful if you use indentLine in comination with
+                |listchars| in order to show tabs.
+                Default value is 0.
+
 g:indentLine_enabled                            *g:indentLine_enabled*
                 Specify whether to enable indentLine plugin by default.
                 If value is not 0, the plugin is on by default, otherwise off.
