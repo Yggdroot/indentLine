@@ -36,6 +36,10 @@ if !exists("g:indentLine_fileTypeExclude")
     let g:indentLine_fileTypeExclude = []
 endif
 
+if !exists("g:indentLine_showFirstIndentLevel")
+    let g:indentLine_showFirstIndentLevel = 0
+endif
+
 set conceallevel=1
 set concealcursor=inc
 
@@ -69,6 +73,11 @@ endfunction
 function! <SID>SetIndentLine()
     let b:indentLine_enabled = 1
     let space = &l:shiftwidth
+
+    if g:indentLine_showFirstIndentLevel
+        exec 'syn match IndentLine /^ / containedin=ALL conceal cchar=' . g:indentLine_char
+    endif
+
     for i in range(space+1, space * g:indentLine_indentLevel + 1, space)
         exec 'syn match IndentLine /\(^\s\+\)\@<=\%'.i.'v / containedin=ALL conceal cchar=' . g:indentLine_char
     endfor
