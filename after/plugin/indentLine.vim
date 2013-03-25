@@ -11,12 +11,20 @@ if !has("conceal") || exists("g:indentLine_loaded")
 endif
 let g:indentLine_loaded = 1
 
-" | ¦ ┆  │
+" | ¦ ┆ ┊ │
 if !exists("g:indentLine_char")
     if &encoding ==? "utf-8"
         let g:indentLine_char = "¦"
     else
-        let  g:indentLine_char = "|"
+        let g:indentLine_char = "|"
+    endif
+endif
+
+if !exists("g:indentLine_first_char")
+    if &encoding ==? "utf-8"
+        let g:indentLine_first_char = "¦"
+    else
+        let g:indentLine_first_char = "|"
     endif
 endif
 
@@ -75,7 +83,7 @@ function! <SID>SetIndentLine()
     let space = &l:shiftwidth
 
     if g:indentLine_showFirstIndentLevel
-        exec 'syn match IndentLine /^ / containedin=ALL conceal cchar=' . g:indentLine_char
+        exec 'syn match IndentLine /^ / containedin=ALL conceal cchar=' . g:indentLine_first_char
     endif
 
     for i in range(space+1, space * g:indentLine_indentLevel + 1, space)
