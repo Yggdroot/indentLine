@@ -27,7 +27,14 @@ g:indentLine_loaded                             *g:loaded_indentLine*
 g:indentLine_char                               *g:indentLine_char*
                 Specify a character to be used as indent line.
                 You also can use other characters:
-                  | ¦ ┆  │
+                  | ¦ ┆ │
+                Default value is "|".
+
+g:indentLine_first_char                         *g:indentLine_first_char*
+                Specify a character to be used as indent line
+                on the first level.
+                You also can use other characters:
+                  | ¦ ┆ │
                 Default value is "|".
 
 g:indentLine_color_term                         *g:indentLine_color_term*
