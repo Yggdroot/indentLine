@@ -1,9 +1,9 @@
 " Script Name: indentLine.vim
 " Version:     1.0.5
-" Last Change: March 5, 2013
+" Last Change: April 1, 2013
 " Author:      Yggdroot <archofortune@gmail.com>
 "
-" Description: To show the indent lines
+" Description: To show the indention levels with thin vertical lines
 
 "{{{1 global variables
 if !has("conceal") || exists("g:indentLine_loaded")
@@ -42,6 +42,10 @@ endif
 
 if !exists("g:indentLine_fileTypeExclude")
     let g:indentLine_fileTypeExclude = []
+endif
+
+if !exists("g:indentLine_bufNameExclude")
+    let g:indentLine_bufNameExclude = []
 endif
 
 if !exists("g:indentLine_showFirstIndentLevel")
@@ -122,6 +126,10 @@ function! <SID>Setup()
     if !getbufvar("%","&hidden") || !exists("b:indentLine_set")
         let b:indentLine_set = 1
 
+        if &ft == ""
+            call <SID>InitColor()
+        endif
+
         if index(g:indentLine_fileTypeExclude, &ft) != -1
             return
         endif
@@ -130,16 +138,18 @@ function! <SID>Setup()
             return
         end
 
+        for name in g:indentLine_bufNameExclude
+            if matchstr(bufname(''), name) == bufname('')
+                return
+            endif
+        endfor
+
         if !exists("b:indentLine_enabled")
             let b:indentLine_enabled = g:indentLine_enabled
         endif
 
         if b:indentLine_enabled
             call <SID>SetIndentLine()
-        endif
-
-        if &ft == ""
-            call <SID>InitColor()
         endif
     endif
 endfunction

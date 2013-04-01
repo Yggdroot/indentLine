@@ -77,6 +77,13 @@ g:indentLine_fileTypeExclude                    *g:indentLine_fileTypeExclude*
                 e.g. let g:indentLine_fileType = ['text', 'sh']
                 Default value is [] which means no file types is excluded.
 
+g:indentLine_bufNameExclude                     *g:indentLine_bufNameExclude*
+                This variable specify a list of buffer names, which can be
+                regular expression. If the buffer's name fall into this list,
+                the indentLine won't display.
+                e.g. let g:indentLine_bufNameExclude = ['_.*', 'NERD_tree.*']
+                Default value is [].
+
 ==============================================================================
 COMMANDS                                         *indentLine-commands*
 
