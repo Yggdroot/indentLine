@@ -19,6 +19,10 @@ for GVim, set `g:indentLine_color_gui` in your `.vimrc`, e.g. `let g:indentLine_
 You can also change the indentLine char:  
 for both Vim and GVim, set `let g:indentLine_char = 'c'` where `'c'` can be any ASCII character. You can also use one of `¦`, `┆` or `│` to display more beautiful lines. However, these characters will only work with files whose encoding is UTF-8.
 
+You can deside whether or not load this plugin when vim initialize:
+`let g:indentLine_init_enabled = 0` not load when initialization or,
+`let g:indentLine_init_enabled = 1` load when initialization.
+
 ## Self promotion
 If you think this script is helpful, follow the [GitHub repository][repository], and don't forget to vote for it on Vim.org! ([vimscript #4354][script]).
 
