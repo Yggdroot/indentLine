@@ -52,6 +52,10 @@ if !exists("g:indentLine_showFirstIndentLevel")
     let g:indentLine_showFirstIndentLevel = 0
 endif
 
+if !exists("g:indentLine_maxLines")
+    let g:indentLine_maxLines = 3000
+endif
+
 set conceallevel=1
 set concealcursor=inc
 
@@ -90,8 +94,9 @@ function! <SID>SetIndentLine()
         exec 'syn match IndentLine /^ / containedin=ALL conceal cchar=' . g:indentLine_first_char
     endif
 
+    let pattern = line('$') < g:indentLine_maxLines ? 'v' : 'c'
     for i in range(space+1, space * g:indentLine_indentLevel + 1, space)
-        exec 'syn match IndentLine /\(^\s\+\)\@<=\%'.i.'v / containedin=ALL conceal cchar=' . g:indentLine_char
+        exec 'syn match IndentLine /\%(^\s\+\)\@<=\%'.i.pattern.' / containedin=ALL conceal cchar=' . g:indentLine_char
     endfor
 endfunction
 

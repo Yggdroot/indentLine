@@ -84,6 +84,12 @@ g:indentLine_bufNameExclude                     *g:indentLine_bufNameExclude*
                 e.g. let g:indentLine_bufNameExclude = ['_.*', 'NERD_tree.*']
                 Default value is [].
 
+g:indentLine_maxLines                           *g:indentLine_maxLines*
+                This variable specify a number, when the number of buffer's
+                lines exceed it, the plugin try to use another pattern to make
+                the performance better.
+                Default value is 3000.
+
 ==============================================================================
 COMMANDS                                         *indentLine-commands*
 
