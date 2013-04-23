@@ -56,8 +56,11 @@ if !exists("g:indentLine_maxLines")
     let g:indentLine_maxLines = 3000
 endif
 
+if !exists("g:indentLine_noConcealCursor")
+  set concealcursor=inc
+endif
+
 set conceallevel=1
-set concealcursor=inc
 
 "{{{1 function! <SID>InitColor()
 function! <SID>InitColor()
