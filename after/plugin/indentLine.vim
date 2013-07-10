@@ -165,6 +165,7 @@ endfunction
 "{{{1 commands
 autocmd BufWinEnter * call <SID>Setup()
 autocmd BufRead,BufNewFile,ColorScheme * call <SID>InitColor()
+autocmd Syntax * if exists("b:indentLine_set") | call <SID>InitColor() | call <SID>SetIndentLine() | endif
 
 command! -nargs=? IndentLinesReset call <SID>ResetWidth(<f-args>)
 command! IndentLinesToggle call <SID>IndentLinesToggle()
