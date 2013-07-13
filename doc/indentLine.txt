@@ -108,6 +108,11 @@ IndentLinesToggle
 ==============================================================================
 FAQ                                              *indentLine-faq*
 
+Q. How can I make the indent line visuall similar to the line used in Sublime
+    Text 2?
+
+A. Use let g:indentLine_char = '┊'
+
 ==============================================================================
 CHANGELOG                                        *indentLine-changelog*
 
