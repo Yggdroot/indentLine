@@ -64,24 +64,12 @@ set conceallevel=1
 
 "{{{1 function! <SID>InitColor()
 function! <SID>InitColor()
-    if !exists("g:indentLine_color_term")
-        if &bg ==? "light"
-            let term_color = 249
-        else
-            let term_color = 239
-        endif
+    if &bg ==? "light"
+        let term_color = get(g:, "indentLine_color_term", 249)
+        let gui_color = get(g:, "indentLine_color_gui", "Grey70")
     else
-        let term_color = g:indentLine_color_term
-    endif
-
-    if !exists("g:indentLine_color_gui")
-        if &bg ==? "light"
-            let gui_color = "Grey70"
-        else
-            let gui_color = "Grey30"
-        endif
-    else
-        let gui_color = g:indentLine_color_gui
+        let term_color = get(g:, "indentLine_color_term_darkbg", 239)
+        let gui_color = get(g:, "indentLine_color_gui_darkbg", "Grey30")
     endif
 
     exec "hi Conceal ctermfg=" . term_color . " ctermbg=NONE"

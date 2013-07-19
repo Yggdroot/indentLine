@@ -38,13 +38,21 @@ g:indentLine_first_char                         *g:indentLine_first_char*
                 Default value is "|".
 
 g:indentLine_color_term                         *g:indentLine_color_term*
-                Specify terminal vim indent line color.
+                Specify terminal vim indent line color for light backgrounds.
                 e.g.  let g:indentLine_color_term = 239
 
-
 g:indentLine_color_gui                          *g:indentLine_color_gui*
-                Specify GUI vim indent line color.
+                Specify GUI vim indent line color for light backgrounds.
                 e.g.  let g:indentLine_color_gui = '#A4E57E'
+
+g:indentLine_color_term_darkbg                  *g:indentLine_color_term_darkbg*
+                Specify terminal vim indent line color for dark backgrounds.
+                e.g.  let g:indentLine_color_term_darkbg = 239
+
+
+g:indentLine_color_gui_darkbg                   *g:indentLine_color_gui_darkbg*
+                Specify GUI vim indent line color for dark backgrounds.
+                e.g.  let g:indentLine_color_gui_darkbg = '#A4E57E'
 
 g:indentLine_indentLevel                        *g:indentLine_indentLevel*
                 Specify how much indent level do you want to use for
