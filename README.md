@@ -12,15 +12,8 @@ To install the plugin just put the plugin files in your `~/.vim` (Linux) or `~/v
 If you use a plugin manager you can put the whole directory into your `~/.vim/bundle/` directory ([Pathogen][pathogen]) or add the line `Bundle 'Yggdroot/indentLine'` to your `.vimrc` ([Vundle][vundle]).
 
 ## Customization
-You can change the default indentLines color either for light backgrounds (`&bg == light`) or dark
-backgrounds (`&bg == dark`).
-To change the default colors for light backgrounds: 
-* for Vim, set `g:indentLine_color_term` in your `.vimrc`, e.g. `let g:indentLine_color_term = 239`,  
-* for GVim, set `g:indentLine_color_gui` in your `.vimrc`, e.g. `let g:indentLine_color_gui = '#A4E57E'`
-
-To change the default colors for light backgrounds: 
-* for Vim, set `g:indentLine_color_term_darkbg` in your `.vimrc`, e.g. `let g:indentLine_color_term_darkbg = 239`,  
-* for GVim, set `g:indentLine_color_gui_darkbg` in your `.vimrc`, e.g. `let g:indentLine_color_gui_darkbg = '#A4E57E'`
+IndetLine use the `Conceal` highlight group for highlighting indentLines, so if you want to change
+that color you have to adjust your colorscheme. 
 
 You can also change the indentLine char:  
 for both Vim and GVim, set `let g:indentLine_char = 'c'` where `'c'` can be any ASCII character. You can also use one of `¦`, `┆` or `│` to display more beautiful lines. However, these characters will only work with files whose encoding is UTF-8.
