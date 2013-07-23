@@ -62,20 +62,6 @@ endif
 
 set conceallevel=1
 
-"{{{1 function! <SID>InitColor()
-function! <SID>InitColor()
-    if &bg ==? "light"
-        let term_color = get(g:, "indentLine_color_term", 249)
-        let gui_color = get(g:, "indentLine_color_gui", "Grey70")
-    else
-        let term_color = get(g:, "indentLine_color_term_darkbg", 239)
-        let gui_color = get(g:, "indentLine_color_gui_darkbg", "Grey30")
-    endif
-
-    exec "hi Conceal ctermfg=" . term_color . " ctermbg=NONE"
-    exec "hi Conceal guifg=" . gui_color .  " guibg=NONE"
-endfunction
-
 "{{{1 function! <SID>SetIndentLine()
 function! <SID>SetIndentLine()
     let b:indentLine_enabled = 1
@@ -122,10 +108,6 @@ function! <SID>Setup()
     if !getbufvar("%","&hidden") || !exists("b:indentLine_set")
         let b:indentLine_set = 1
 
-        if &ft == ""
-            call <SID>InitColor()
-        endif
-
         if index(g:indentLine_fileTypeExclude, &ft) != -1
             return
         endif
@@ -152,8 +134,7 @@ endfunction
 
 "{{{1 commands
 autocmd BufWinEnter * call <SID>Setup()
-autocmd BufRead,BufNewFile,ColorScheme * call <SID>InitColor()
-autocmd Syntax * if exists("b:indentLine_set") | call <SID>InitColor() | call <SID>SetIndentLine() | endif
+autocmd Syntax * if exists("b:indentLine_set") | call <SID>SetIndentLine() | endif
 
 command! -nargs=? IndentLinesReset call <SID>ResetWidth(<f-args>)
 command! IndentLinesToggle call <SID>IndentLinesToggle()
