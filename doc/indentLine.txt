@@ -74,7 +74,7 @@ g:indentLine_fileTypeExclude                    *g:indentLine_fileTypeExclude*
                 This variable specify a list of file types.
                 When opening these types of files, the plugin is disabled by
                 default.
-                e.g. let g:indentLine_fileType = ['text', 'sh']
+                e.g. let g:indentLine_fileTypeExclude = ['text', 'sh']
                 Default value is [] which means no file types is excluded.
 
 g:indentLine_bufNameExclude                     *g:indentLine_bufNameExclude*
