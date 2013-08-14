@@ -57,10 +57,10 @@ if !exists("g:indentLine_maxLines")
 endif
 
 if !exists("g:indentLine_noConcealCursor")
-  set concealcursor=inc
+  setlocal concealcursor=inc
 endif
 
-set conceallevel=1
+setlocal conceallevel=1
 
 "{{{1 function! <SID>InitColor()
 function! <SID>InitColor()
