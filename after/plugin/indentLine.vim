@@ -91,7 +91,7 @@ endfunction
 "{{{1 function! <SID>SetIndentLine()
 function! <SID>SetIndentLine()
     let b:indentLine_enabled = 1
-    let space = &l:shiftwidth
+    let space = &l:shiftwidth == 0 ? &l:tabstop : &l:shiftwidth
 
     if g:indentLine_showFirstIndentLevel
         exec 'syn match IndentLine /^ / containedin=ALL conceal cchar=' . g:indentLine_first_char
