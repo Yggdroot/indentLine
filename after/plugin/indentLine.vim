@@ -56,6 +56,10 @@ if !exists("g:indentLine_maxLines")
     let g:indentLine_maxLines = 3000
 endif
 
+if !exists("g:indentLine_faster")
+    let g:indentLine_faster = 0
+endif
+
 if !exists("g:indentLine_noConcealCursor")
   set concealcursor=inc
 endif
@@ -93,14 +97,21 @@ function! <SID>SetIndentLine()
     let b:indentLine_enabled = 1
     let space = &l:shiftwidth == 0 ? &l:tabstop : &l:shiftwidth
 
-    if g:indentLine_showFirstIndentLevel
-        exec 'syn match IndentLine /^ / containedin=ALL conceal cchar=' . g:indentLine_first_char
-    endif
+    if g:indentLine_faster
+        exec 'syn match IndentLineSpace /^\s\+/ contains=IndentLine'
+        exec 'syn match IndentLine /^ /                    containedin=ALL contained conceal cchar=' . g:indentLine_char
+        exec 'syn match IndentLine / \{'.(space-1).'}\zs / containedin=ALL contained conceal cchar=' . g:indentLine_char
+        exec 'syn match IndentLine /\t\zs /                containedin=ALL contained conceal cchar=' . g:indentLine_char
+    else
+        if g:indentLine_showFirstIndentLevel
+            exec 'syn match IndentLine /^ / containedin=ALL conceal cchar=' . g:indentLine_first_char
+        endif
 
-    let pattern = line('$') < g:indentLine_maxLines ? 'v' : 'c'
-    for i in range(space+1, space * g:indentLine_indentLevel + 1, space)
-        exec 'syn match IndentLine /\%(^\s\+\)\@<=\%'.i.pattern.' / containedin=ALL conceal cchar=' . g:indentLine_char
-    endfor
+        let pattern = line('$') < g:indentLine_maxLines ? 'v' : 'c'
+        for i in range(space+1, space * g:indentLine_indentLevel + 1, space)
+            exec 'syn match IndentLine /\%(^\s\+\)\@<=\%'.i.pattern.' / containedin=ALL conceal cchar=' . g:indentLine_char
+        endfor
+    endif
 endfunction
 
 "{{{1 function! <SID>ResetWidth(...)
@@ -111,6 +122,7 @@ function! <SID>ResetWidth(...)
 
     if exists("b:indentLine_enabled")
         syn clear IndentLine
+        syn clear IndentLineSpace
     endif
     call <SID>SetIndentLine()
 endfunction
@@ -166,6 +178,7 @@ endfunction
 autocmd BufWinEnter * call <SID>Setup()
 autocmd BufRead,BufNewFile,ColorScheme * call <SID>InitColor()
 autocmd Syntax * if exists("b:indentLine_set") | call <SID>InitColor() | call <SID>SetIndentLine() | endif
+
 
 command! -nargs=? IndentLinesReset call <SID>ResetWidth(<f-args>)
 command! IndentLinesToggle call <SID>IndentLinesToggle()
