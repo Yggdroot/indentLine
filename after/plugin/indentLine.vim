@@ -122,7 +122,9 @@ function! <SID>ResetWidth(...)
 
     if exists("b:indentLine_enabled")
         syn clear IndentLine
-        syn clear IndentLineSpace
+        if g:indentLine_faster
+            syn clear IndentLineSpace
+        endif
     endif
     call <SID>SetIndentLine()
 endfunction
