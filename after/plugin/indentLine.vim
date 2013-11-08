@@ -60,6 +60,10 @@ if !exists("g:indentLine_faster")
     let g:indentLine_faster = 0
 endif
 
+if !exists("g:indentLine_setColors")
+    let g:indentLine_setColors = 1
+endif
+
 if !exists("g:indentLine_noConcealCursor")
   set concealcursor=inc
 endif
@@ -68,6 +72,10 @@ set conceallevel=1
 
 "{{{1 function! <SID>InitColor()
 function! <SID>InitColor()
+    if !g:indentLine_setColors
+        return
+    endif
+
     if !exists("g:indentLine_color_term")
         if &bg ==? "light"
             let term_color = 249
