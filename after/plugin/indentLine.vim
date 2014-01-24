@@ -147,6 +147,7 @@ endfunction
 
 "{{{1 augroup indentLine
 augroup indentLine
+    autocmd!
     autocmd BufWinEnter * call <SID>Setup()
     autocmd BufRead,BufNewFile,ColorScheme * call <SID>InitColor()
     autocmd Syntax * if exists("b:indentLine_set") && exists("b:indentLine_enabled") && b:indentLine_enabled | call <SID>InitColor() | call <SID>SetIndentLine() | endif
