@@ -23,7 +23,6 @@ let g:indentLine_fileTypeExclude = get(g:,'indentLine_fileTypeExclude',[])
 let g:indentLine_bufNameExclude = get(g:,'indentLine_bufNameExclude',[])
 let g:indentLine_showFirstIndentLevel = get(g:,'indentLine_showFirstIndentLevel',0)
 let g:indentLine_maxLines = get(g:,'indentLine_maxLines',3000)
-let g:indentLine_faster = get(g:,'indentLine_faster',0)
 let g:indentLine_setColors =  get(g:,'indentLine_setColors',1)
 
 "{{{1 function! s:InitColor()
@@ -61,17 +60,10 @@ function! s:SetIndentLine()
     let b:indentLine_enabled = 1
     let space = &l:shiftwidth is 0 ? &l:tabstop : &l:shiftwidth
 
-    if g:indentLine_faster
-        execute 'syntax match IndentLineSpace /^\s\+/ contains=IndentLine'
-        execute 'syntax match IndentLine /^ /                    containedin=ALL contained conceal cchar=' . g:indentLine_char
-        execute 'syntax match IndentLine / \{' . (space-1) . '}\zs / containedin=ALL contained conceal cchar=' . g:indentLine_char
-        execute 'syntax match IndentLine /\t\zs /                containedin=ALL contained conceal cchar=' . g:indentLine_char
-    else
-        exec 'syn match IndentLineSpace /^\s\+/ containedin=ALL contains=IndentLine'
-        exec 'syn match IndentLine /^\@! \{'.(space-1).'}\zs / contained conceal cchar=' . g:indentLine_char
-        if g:indentLine_showFirstIndentLevel
-            execute 'syntax match IndentLine /^ / contained conceal cchar=' . g:indentLine_first_char
-        endif
+    execute 'syntax match IndentLineSpace /^\s\+/ containedin=ALL contains=IndentLine'
+    execute 'syntax match IndentLine /^\@! \{'.(space-1).'}\zs / contained conceal cchar=' . g:indentLine_char
+    if g:indentLine_showFirstIndentLevel
+        execute 'syntax match IndentLine /^ / contained conceal cchar=' . g:indentLine_first_char
     endif
 endfunction
 
@@ -83,9 +75,7 @@ function! s:ResetWidth(...)
 
     if exists("b:indentLine_enabled")
         syntax clear IndentLine
-        if g:indentLine_faster
-            syntax clear IndentLineSpace
-        endif
+        syntax clear IndentLineSpace
     endif
     call s:SetIndentLine()
 endfunction
