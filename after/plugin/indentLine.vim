@@ -67,12 +67,11 @@ function! s:SetIndentLine()
         execute 'syntax match IndentLine / \{' . (space-1) . '}\zs / containedin=ALL contained conceal cchar=' . g:indentLine_char
         execute 'syntax match IndentLine /\t\zs /                containedin=ALL contained conceal cchar=' . g:indentLine_char
     else
+        exec 'syn match IndentLineSpace /^\s\+/ containedin=ALL contains=IndentLine'
+        exec 'syn match IndentLine /^\@! \{'.(space-1).'}\zs / contained conceal cchar=' . g:indentLine_char
         if g:indentLine_showFirstIndentLevel
-            execute 'syntax match IndentLine /^ / containedin=ALL conceal cchar=' . g:indentLine_first_char
+            execute 'syntax match IndentLine /^ / contained conceal cchar=' . g:indentLine_first_char
         endif
-
-        let pattern = line('$') < g:indentLine_maxLines ? 'v' : 'c'
-        exec 'syn match IndentLine /\%(^\)\@! \{'.(space-1).'}\zs / containedin=ALL contained conceal cchar=' . g:indentLine_char
     endif
 endfunction
 
