@@ -90,11 +90,6 @@ g:indentLine_maxLines                           *g:indentLine_maxLines*
                 the performance better.
                 Default value is 3000.
 
-g:indentLine_faster                             *g:indentLine_faster*
-                If you want the performance better, you can set the value as
-                1, default value is 0. But better performance may bring little
-                issue with it.
-
 g:indentLine_noConcealCursor                    *g:indentLine_noConcealCursor*
                 This variable toggles cursor lines behavior. If variable
                 exists, then cursorline will be above conceal chars.

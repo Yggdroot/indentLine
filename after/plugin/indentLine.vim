@@ -14,8 +14,8 @@ endif
 let g:indentLine_loaded = 1
 
 
-let g:indentLine_char = get(g:,'indentLine_char',(&encoding is# "utf-8" ? '|' : '|'))
-let g:indentLine_first_char = get(g:,'indentLine_first_char',(&encoding is# "utf-8" ? '|' : '|'))
+let g:indentLine_char = get(g:,'indentLine_char',(&encoding is# "utf-8" ? '¦' : '|'))
+let g:indentLine_first_char = get(g:,'indentLine_first_char',(&encoding is# "utf-8" ? '¦' : '|'))
 let g:indentLine_indentLevel = get(g:,'indentLine_indentLevel',10)
 let g:indentLine_enabled = get(g:,'indentLine_enabled',1)
 let g:indentLine_fileType = get(g:,'indentLine_fileType',[])
@@ -61,7 +61,8 @@ function! s:SetIndentLine()
     let space = &l:shiftwidth is 0 ? &l:tabstop : &l:shiftwidth
 
     execute 'syntax match IndentLineSpace /^\s\+/ containedin=ALL contains=IndentLine'
-    execute 'syntax match IndentLine /^\@! \{'.(space-1).'}\zs / contained conceal cchar=' . g:indentLine_char
+    execute 'syntax match IndentLine / \{'.(space-1).'}\zs / contained conceal cchar=' . g:indentLine_char
+    execute 'syntax match IndentLine /\t\zs / contained conceal cchar=' . g:indentLine_char
     if g:indentLine_showFirstIndentLevel
         execute 'syntax match IndentLine /^ / contained conceal cchar=' . g:indentLine_first_char
     endif
