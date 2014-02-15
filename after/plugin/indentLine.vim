@@ -100,9 +100,9 @@ function! s:Setup()
     if ! exists("g:indentLine_noConcealCursor")
         setlocal concealcursor=inc
     endif
-    setlocal conceallevel=1
+    setlocal conceallevel=2
 
-    if !getbufvar("%","&hidden") || !exists("b:indentLine_set")
+    if !&hidden || !exists("b:indentLine_set")
         let b:indentLine_set = 1
 
         if &filetype is# ""
@@ -138,7 +138,7 @@ augroup indentLine
     autocmd!
     autocmd BufWinEnter * call <SID>Setup()
     autocmd BufRead,BufNewFile,ColorScheme * call <SID>InitColor()
-    autocmd Syntax * if exists("b:indentLine_set") && exists("b:indentLine_enabled") && b:indentLine_enabled | call <SID>InitColor() | call <SID>SetIndentLine() | endif
+    autocmd Syntax * if exists("b:indentLine_set") && get(b:, "indentLine_enabled", 0) | call <SID>InitColor() | call <SID>SetIndentLine() | endif
 augroup END
 
 "{{{1 commands
