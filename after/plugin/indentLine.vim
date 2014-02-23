@@ -23,7 +23,8 @@ let g:indentLine_fileTypeExclude = get(g:,'indentLine_fileTypeExclude',[])
 let g:indentLine_bufNameExclude = get(g:,'indentLine_bufNameExclude',[])
 let g:indentLine_showFirstIndentLevel = get(g:,'indentLine_showFirstIndentLevel',0)
 let g:indentLine_maxLines = get(g:,'indentLine_maxLines',3000)
-let g:indentLine_setColors =  get(g:,'indentLine_setColors',1)
+let g:indentLine_setColors = get(g:,'indentLine_setColors',1)
+let g:indentLine_faster = get(g:,'indentLine_faster',0)
 
 "{{{1 function! s:InitColor()
 function! s:InitColor()
@@ -60,11 +61,19 @@ function! s:SetIndentLine()
     let b:indentLine_enabled = 1
     let space = &l:shiftwidth is 0 ? &l:tabstop : &l:shiftwidth
 
-    execute 'syntax match IndentLineSpace /^\s\+/ containedin=ALL contains=IndentLine'
-    execute 'syntax match IndentLine / \{'.(space-1).'}\zs / contained conceal cchar=' . g:indentLine_char
-    execute 'syntax match IndentLine /\t\zs / contained conceal cchar=' . g:indentLine_char
     if g:indentLine_showFirstIndentLevel
-        execute 'syntax match IndentLine /^ / contained conceal cchar=' . g:indentLine_first_char
+        execute 'syntax match IndentLine /^ / containedin=ALL conceal cchar=' . g:indentLine_first_char
+    endif
+
+    if g:indentLine_faster
+        execute 'syntax match IndentLineSpace /^\s\+/ containedin=ALL contains=IndentLine'
+        execute 'syntax match IndentLine / \{'.(space-1).'}\zs / contained conceal cchar=' . g:indentLine_char
+        execute 'syntax match IndentLine /\t\zs / contained conceal cchar=' . g:indentLine_char
+    else
+        let pattern = line('$') < g:indentLine_maxLines ? 'v' : 'c'
+        for i in range(space+1, space * g:indentLine_indentLevel + 1, space)
+            execute 'syntax match IndentLine /\%(^\s\+\)\@<=\%'.i.pattern.' / containedin=ALL conceal cchar=' . g:indentLine_char
+        endfor
     endif
 endfunction
 
@@ -76,7 +85,6 @@ function! s:ResetWidth(...)
 
     if exists("b:indentLine_enabled")
         syntax clear IndentLine
-        syntax clear IndentLineSpace
     endif
     call s:SetIndentLine()
 endfunction
@@ -137,8 +145,7 @@ endfunction
 augroup indentLine
     autocmd!
     autocmd BufWinEnter * call <SID>Setup()
-    autocmd BufRead,BufNewFile,ColorScheme * call <SID>InitColor()
-    autocmd Syntax * if exists("b:indentLine_set") && get(b:, "indentLine_enabled", 0) | call <SID>InitColor() | call <SID>SetIndentLine() | endif
+    autocmd BufRead,BufNewFile,ColorScheme,Syntax * call <SID>InitColor()
 augroup END
 
 "{{{1 commands
