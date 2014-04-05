@@ -105,9 +105,23 @@ endfunction
 
 "{{{1 function! s:Setup()
 function! s:Setup()
-    if ! exists("g:indentLine_noConcealCursor")
-        setlocal concealcursor=inc
-    endif
+   if index(g:indentLine_fileTypeExclude, &filetype) isnot -1
+      return
+   endif
+
+   if len(g:indentLine_fileType) isnot 0 && index(g:indentLine_fileType, &filetype) is -1
+      return
+   end
+
+   for name in g:indentLine_bufNameExclude
+      if matchstr(bufname(''), name) is bufname('')
+         return
+      endif
+   endfor
+
+   if ! exists("g:indentLine_noConcealCursor")
+      setlocal concealcursor=inc
+   endif
     setlocal conceallevel=2
 
     if !&hidden || !exists("b:indentLine_set")
@@ -116,20 +130,6 @@ function! s:Setup()
         if &filetype is# ""
             call s:InitColor()
         endif
-
-        if index(g:indentLine_fileTypeExclude, &filetype) isnot -1
-            return
-        endif
-
-        if len(g:indentLine_fileType) isnot 0 && index(g:indentLine_fileType, &filetype) is -1
-            return
-        end
-
-        for name in g:indentLine_bufNameExclude
-            if matchstr(bufname(''), name) is bufname('')
-                return
-            endif
-        endfor
 
         if ! exists("b:indentLine_enabled")
             let b:indentLine_enabled = g:indentLine_enabled
