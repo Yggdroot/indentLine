@@ -14,8 +14,8 @@ endif
 let g:indentLine_loaded = 1
 
 
-let g:indentLine_char = get(g:,'indentLine_char',(&encoding is# "utf-8" ? '¦' : '|'))
-let g:indentLine_first_char = get(g:,'indentLine_first_char',(&encoding is# "utf-8" ? '¦' : '|'))
+let g:indentLine_char = get(g:,'indentLine_char',(&encoding is# "utf-8" && &term isnot# "linux" ? '¦' : '|'))
+let g:indentLine_first_char = get(g:,'indentLine_first_char',(&encoding is# "utf-8" && &term isnot# "linux"  ? '¦' : '|'))
 let g:indentLine_indentLevel = get(g:,'indentLine_indentLevel',10)
 let g:indentLine_enabled = get(g:,'indentLine_enabled',1)
 let g:indentLine_fileType = get(g:,'indentLine_fileType',[])
@@ -52,8 +52,19 @@ function! s:InitColor()
         let gui_color = g:indentLine_color_gui
     endif
 
+    if ! exists("g:indentLine_color_tty")
+        if &background is# "light"
+            let tty_color = 4
+        else
+            let tty_color = 2
+        endif
+    else
+        let tty_color = g:indentLine_color_tty
+    endif
+
     execute "highlight Conceal ctermfg=" . term_color . " ctermbg=NONE"
     execute "highlight Conceal guifg=" . gui_color .  " guibg=NONE"
+    execute "highlight Conceal cterm=bold ctermfg=" . tty_color .  " ctermbg=NONE"
 endfunction
 
 "{{{1 function! s:SetIndentLine()
