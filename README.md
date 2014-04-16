@@ -14,8 +14,8 @@ If you use a plugin manager you can put the whole directory into your `~/.vim/bu
 ## Customization
 You can change the color of indentLines:  
 for Vim, set `g:indentLine_color_term` in your `.vimrc`, e.g. `let g:indentLine_color_term = 239`,  
-for GVim, set `g:indentLine_color_gui` in your `.vimrc`, e.g. `let g:indentLine_color_gui = '#A4E57E'`
-for none X terminal, set `g:indentLine_color_tty` in your `.vimrc`, e.g. `let g:indentLine_color_tty = 2
+for GVim, set `g:indentLine_color_gui` in your `.vimrc`, e.g. `let g:indentLine_color_gui = '#A4E57E'`  
+for none X terminal, set `g:indentLine_color_tty_light` and `g:indentLine_color_tty_dark` in your `.vimrc`. e.g. `let g:indentLine_color_tty_light = 7`(default: 4), `let g:indentLine_color_dark = 1`(default: 2).
 
 You can also change the indentLine char:  
 for both Vim and GVim, set `let g:indentLine_char = 'c'` where `'c'` can be any ASCII character. You can also use one of `¦`, `┆` or `│` to display more beautiful lines. However, these characters will only work with files whose encoding is UTF-8.
