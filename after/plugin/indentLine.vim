@@ -1,7 +1,4 @@
-
 " Script Name: indentLine.vim
-" Version:     1.0.5
-" Last Change: April 1, 2013
 " Author:      Yggdroot <archofortune@gmail.com>
 "
 " Description: To show the indention levels with thin vertical lines
@@ -114,39 +111,43 @@ endfunction
 
 "{{{1 function! s:Setup()
 function! s:Setup()
-   if index(g:indentLine_fileTypeExclude, &filetype) isnot -1
-      return
-   endif
+    if index(g:indentLine_fileTypeExclude, &filetype) isnot -1
+        return
+    endif
 
-   if len(g:indentLine_fileType) isnot 0 && index(g:indentLine_fileType, &filetype) is -1
-      return
-   end
+    if len(g:indentLine_fileType) isnot 0 && index(g:indentLine_fileType, &filetype) is -1
+        return
+    end
 
-   for name in g:indentLine_bufNameExclude
-      if matchstr(bufname(''), name) is bufname('')
-         return
-      endif
-   endfor
+    for name in g:indentLine_bufNameExclude
+        if matchstr(bufname(''), name) is bufname('')
+            return
+        endif
+    endfor
 
-   if ! exists("g:indentLine_noConcealCursor")
-      setlocal concealcursor=inc
-   endif
+    if ! exists("b:indentLine_bufNr")
+        let b:indentLine_bufNr = bufnr('%')
+        let g:indentLine_bufNr = bufnr('%')
+    elseif g:indentLine_bufNr != bufnr('%') && &hidden
+        let g:indentLine_bufNr = bufnr('%')
+        return
+    endif
+
+    if ! exists("g:indentLine_noConcealCursor")
+        setlocal concealcursor=inc
+    endif
     setlocal conceallevel=2
 
-    if !&hidden || !exists("b:indentLine_set")
-        let b:indentLine_set = 1
+    if &filetype is# ""
+        call s:InitColor()
+    endif
 
-        if &filetype is# ""
-            call s:InitColor()
-        endif
+    if ! exists("b:indentLine_enabled")
+        let b:indentLine_enabled = g:indentLine_enabled
+    endif
 
-        if ! exists("b:indentLine_enabled")
-            let b:indentLine_enabled = g:indentLine_enabled
-        endif
-
-        if b:indentLine_enabled
-            call s:SetIndentLine()
-        endif
+    if b:indentLine_enabled
+        call s:SetIndentLine()
     endif
 endfunction
 
@@ -155,7 +156,6 @@ augroup indentLine
     autocmd!
     autocmd BufWinEnter * call <SID>Setup()
     autocmd BufRead,BufNewFile,ColorScheme * call <SID>InitColor()
-    autocmd Syntax * call <SID>InitColor() | call <SID>SetIndentLine()
 augroup END
 
 "{{{1 commands
