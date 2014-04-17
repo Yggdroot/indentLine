@@ -46,9 +46,15 @@ g:indentLine_color_gui                          *g:indentLine_color_gui*
                 Specify GUI vim indent line color.
                 e.g.  let g:indentLine_color_gui = '#A4E57E'
 
-g:indentLine_color_tty                          *g:indentLine_color_tty*
-                Specify none X terminal vim indent line color. (0 - 7)
-                e.g.  let g:indentLine_color_tty = 2
+g:indentLine_color_tty_light                    *g:indentLine_color_tty_light*
+                Specify none X terminal vim indent line color in bg light.
+                default: 4
+                e.g.  let g:indentLine_color_tty_light = 7
+
+g:indentLine_color_tty_dark                     *g:indentLine_color_tty_dark*
+                Specify none X terminal vim indent line color in bg dark.
+                default: 2
+                e.g.  let g:indentLine_color_tty_dark = 1
 
 g:indentLine_indentLevel                        *g:indentLine_indentLevel*
                 Specify how much indent level do you want to use for

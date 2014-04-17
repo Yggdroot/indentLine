@@ -52,19 +52,17 @@ function! s:InitColor()
         let gui_color = g:indentLine_color_gui
     endif
 
-    if ! exists("g:indentLine_color_tty")
-        if &background is# "light"
-            let tty_color = 4
-        else
-            let tty_color = 2
-        endif
-    else
-        let tty_color = g:indentLine_color_tty
-    endif
-
     execute "highlight Conceal ctermfg=" . term_color . " ctermbg=NONE"
     execute "highlight Conceal guifg=" . gui_color .  " guibg=NONE"
-    execute "highlight Conceal cterm=bold ctermfg=" . tty_color .  " ctermbg=NONE"
+
+    if &term is# "linux"
+        if &background is# "light"
+            let tty_color = exists("g:indentLine_color_tty_light") ? g:indentLine_color_tty_light : 4
+        else
+            let tty_color = exists("g:indentLine_color_tty_dark") ? g:indentLine_color_tty_dark : 2
+        endif
+        execute "highlight Conceal cterm=bold ctermfg=" . tty_color .  " ctermbg=NONE"
+    endif
 endfunction
 
 "{{{1 function! s:SetIndentLine()
@@ -165,3 +163,4 @@ command! -nargs=? IndentLinesReset call <SID>ResetWidth(<f-args>)
 command! IndentLinesToggle call <SID>IndentLinesToggle()
 
 " vim:et:ts=4:sw=4:fdm=marker:fmr={{{,}}}
+
