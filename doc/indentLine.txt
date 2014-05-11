@@ -120,6 +120,13 @@ IndentLinesReset [number]
 
 IndentLinesToggle
                 toggle the indent lines of the current buffer.
+
+IndentLinesEnable
+                enable the indent lines of the current buffer.
+
+IndentLinesDisable
+                disable the indent lines of the current buffer.
+
 ==============================================================================
 FAQ                                              *indentLine-faq*
 

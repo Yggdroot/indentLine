@@ -95,6 +95,17 @@ function! s:ResetWidth(...)
     call s:SetIndentLine()
 endfunction
 
+"{{{1 function! s:IndentLinesEnable()
+function! s:IndentLinesEnable()
+    call s:SetIndentLine()
+endfunction
+
+"{{{1 function! s:IndentLinesDisable()
+function! s:IndentLinesDisable()
+    let b:indentLine_enabled = 0
+    syntax clear IndentLine
+endfunction
+
 "{{{1 function! s:IndentLinesToggle()
 function! s:IndentLinesToggle()
     if ! exists("b:indentLine_enabled")
@@ -102,10 +113,9 @@ function! s:IndentLinesToggle()
     endif
 
     if b:indentLine_enabled
-        let b:indentLine_enabled = 0
-        syntax clear IndentLine
+        call s:IndentLinesDisable()
     else
-        call s:SetIndentLine()
+        call s:IndentLinesEnable()
     endif
 endfunction
 
@@ -161,6 +171,8 @@ augroup END
 "{{{1 commands
 command! -nargs=? IndentLinesReset call <SID>ResetWidth(<f-args>)
 command! IndentLinesToggle call <SID>IndentLinesToggle()
+command! IndentLinesEnable call <SID>IndentLinesEnable()
+command! IndentLinesDisable call <SID>IndentLinesDisable()
 
 " vim:et:ts=4:sw=4:fdm=marker:fmr={{{,}}}
 
