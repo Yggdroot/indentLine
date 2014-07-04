@@ -165,7 +165,7 @@ endfunction
 augroup indentLine
     autocmd!
     autocmd BufWinEnter * call <SID>Setup()
-    autocmd BufRead,BufNewFile,ColorScheme * call <SID>InitColor()
+    autocmd BufRead,BufNewFile,ColorScheme,Syntax * call <SID>InitColor()
 augroup END
 
 "{{{1 commands
