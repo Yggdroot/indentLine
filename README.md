@@ -20,6 +20,22 @@ for none X terminal, set `g:indentLine_color_tty_light` and `g:indentLine_color_
 You can also change the indentLine char:  
 for both Vim and GVim, set `let g:indentLine_char = 'c'` where `'c'` can be any ASCII character. You can also use one of `¦`, `┆` or `│` to display more beautiful lines. However, these characters will only work with files whose encoding is UTF-8.
 
+### Font patching
+If you find all the standard unicode and ASCII characters too obtrusive, you might consider patching your font with the [indentLine-dotted-guide.eps][glyph] glyph provided.  [FontForge][fontforge] makes the process amazingly simple:
+
+ 1. Download and install FontForge.
+ 2. Locate and open your terminal/gVim font.
+ 3. Open the font in FontForge, choose __Goto__ from the __View__ menu and select _Private Use Area_ from the drop down box.
+ 4. In the private use area, locate a blank spot for the glyph. Make a note of the code, e.g. `U+E0A3`.
+ 5. Double-click the selected code point to open the font drawing tool.
+ 6. From the __File__ menu, select __Import...__ and locate the _indentLine-dotted-guide.eps_ file.
+ 7. Once imported, choose __File__ -> __Generate Fonts__ and choose a location and file type for the new font.
+
+Once completed, your new font will contain the more subtle dotted guide and all you have to do is set that glyph to `g:indentLine_char` in your `.vimrc` file.
+
+[glyph]: glyph/indentLine-dotted-guide.eps
+[fontforge]: http://fontforge.github.io/
+
 ## Self promotion
 If you think this script is helpful, follow the [GitHub repository][repository], and don't forget to vote for it on Vim.org! ([vimscript #4354][script]).
 
@@ -28,7 +44,11 @@ If you think this script is helpful, follow the [GitHub repository][repository],
 [repository]: https://github.com/Yggdroot/indentLine
 [script]: http://www.vim.org/scripts/script.php?script_id=4354
 
-
 ## Screenshots
+
+### Vertical bars
 ![Screenshot](http://i.imgur.com/KVi0T.jpg)
+
+### Patched font
+![Screenshot](http://i.imgur.com/2ZA7oaZ.png)
 
