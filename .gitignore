@@ -161,3 +161,11 @@ pip-log.txt
 
 # Mac crap
 .DS_Store
+
+
+#############
+## Vim
+#############
+
+# Exclude auto generated vim doc tags.
+doc/tags
