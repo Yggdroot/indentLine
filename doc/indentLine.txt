@@ -110,6 +110,13 @@ g:indentLine_noConcealCursor                    *g:indentLine_noConcealCursor*
                 exists, then cursorline will be above conceal chars.
                 Default value is not set.
 
+g:indentLine_leadingSpaceChar                   *g:indentLine_leadingSpaceChar*
+                Specify a character to show for leading spaces.
+                e.g. let g:indentLine_leadingSpaceChar = '·'
+
+g:indentLine_leadingSpaceEnabled                *g:indentLine_leadingSpaceEnabled*
+                Specify whether to show leading spaces by default.
+                Default value is 0.
 ==============================================================================
 COMMANDS                                         *indentLine-commands*
 
@@ -127,6 +134,14 @@ IndentLinesEnable
 IndentLinesDisable
                 disable the indent lines of the current buffer.
 
+LeadingSpaceEnable
+                enable the leading spaces of the current buffer.
+
+LeadingSpaceDisable
+                disable the leading spaces of the current buffer.
+
+LeadingSpaceToggle
+                toggle the leading spaces of the current buffer.
 ==============================================================================
 FAQ                                              *indentLine-faq*
 
