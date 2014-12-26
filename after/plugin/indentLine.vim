@@ -22,6 +22,8 @@ let g:indentLine_showFirstIndentLevel = get(g:,'indentLine_showFirstIndentLevel'
 let g:indentLine_maxLines = get(g:,'indentLine_maxLines',3000)
 let g:indentLine_setColors = get(g:,'indentLine_setColors',1)
 let g:indentLine_faster = get(g:,'indentLine_faster',0)
+let g:indentLine_leadingSpaceChar = get(g:,'indentLine_leadingSpaceChar','.')
+let g:indentLine_leadingSpaceEnabled = get(g:,'indentLine_leadingSpaceEnabled',0)
 
 "{{{1 function! s:InitColor()
 function! s:InitColor()
@@ -156,8 +158,45 @@ function! s:Setup()
         let b:indentLine_enabled = g:indentLine_enabled
     endif
 
+    if ! exists("b:indentLine_leadingSpaceEnabled")
+        let b:indentLine_leadingSpaceEnabled = g:indentLine_leadingSpaceEnabled
+    endif
+
     if b:indentLine_enabled
         call s:SetIndentLine()
+    endif
+
+    if b:indentLine_leadingSpaceEnabled
+        call s:LeadingSpaceEnable()
+    endif
+endfunction
+
+"{{{1 function! s:LeadingSpaceEnable()
+function! s:LeadingSpaceEnable()
+    if g:indentLine_faster
+        echoerr 'LeadingSpace can not be shown when g:indentLine_faster == 1'
+        return
+    endif
+    let b:indentLine_leadingSpaceEnabled = 1
+    execute 'syntax match IndentLineLeadingSpace /\%(^\s*\)\@<= / containedin=ALLBUT,IndentLine conceal cchar=' . g:indentLine_leadingSpaceChar
+endfunction
+
+"{{{1 function! s:LeadingSpaceDisable()
+function! s:LeadingSpaceDisable()
+    let b:indentLine_leadingSpaceEnabled = 0
+    syntax clear IndentLineLeadingSpace
+endfunction
+
+"{{{1 function! s:LeadingSpaceToggle()
+function! s:LeadingSpaceToggle()
+    if ! exists("b:indentLine_leadingSpaceEnabled")
+        let b:indentLine_leadingSpaceEnabled = 0
+    endif
+
+    if b:indentLine_leadingSpaceEnabled
+        call s:LeadingSpaceDisable()
+    else
+        call s:LeadingSpaceEnable()
     endif
 endfunction
 
@@ -173,6 +212,9 @@ command! -nargs=? IndentLinesReset call <SID>ResetWidth(<f-args>)
 command! IndentLinesToggle call <SID>IndentLinesToggle()
 command! IndentLinesEnable call <SID>IndentLinesEnable()
 command! IndentLinesDisable call <SID>IndentLinesDisable()
+command! LeadingSpaceEnable call <SID>LeadingSpaceEnable()
+command! LeadingSpaceDisable call <SID>LeadingSpaceDisable()
+command! LeadingSpaceToggle call <SID>LeadingSpaceToggle()
 
 " vim:et:ts=4:sw=4:fdm=marker:fmr={{{,}}}
 
