@@ -22,7 +22,7 @@ let g:indentLine_showFirstIndentLevel = get(g:,'indentLine_showFirstIndentLevel'
 let g:indentLine_maxLines = get(g:,'indentLine_maxLines',3000)
 let g:indentLine_setColors = get(g:,'indentLine_setColors',1)
 let g:indentLine_faster = get(g:,'indentLine_faster',0)
-let g:indentLine_leadingSpaceChar = get(g:,'indentLine_leadingSpaceChar','.')
+let g:indentLine_leadingSpaceChar = get(g:,'indentLine_leadingSpaceChar',(&encoding is# "utf-8" && &term isnot# "linux" ? '·' : '.'))
 let g:indentLine_leadingSpaceEnabled = get(g:,'indentLine_leadingSpaceEnabled',0)
 
 "{{{1 function! s:InitColor()
@@ -91,7 +91,7 @@ function! s:ResetWidth(...)
         let &l:shiftwidth = a:1
     endif
 
-    if exists("b:indentLine_enabled")
+    if b:indentLine_enabled
         syntax clear IndentLine
     endif
     call s:SetIndentLine()
@@ -104,16 +104,14 @@ endfunction
 
 "{{{1 function! s:IndentLinesDisable()
 function! s:IndentLinesDisable()
-    let b:indentLine_enabled = 0
-    syntax clear IndentLine
+    if b:indentLine_enabled
+        let b:indentLine_enabled = 0
+        syntax clear IndentLine
+    endif
 endfunction
 
 "{{{1 function! s:IndentLinesToggle()
 function! s:IndentLinesToggle()
-    if ! exists("b:indentLine_enabled")
-        let b:indentLine_enabled = 0
-    endif
-
     if b:indentLine_enabled
         call s:IndentLinesDisable()
     else
@@ -183,16 +181,14 @@ endfunction
 
 "{{{1 function! s:LeadingSpaceDisable()
 function! s:LeadingSpaceDisable()
-    let b:indentLine_leadingSpaceEnabled = 0
-    syntax clear IndentLineLeadingSpace
+    if b:indentLine_leadingSpaceEnabled
+        let b:indentLine_leadingSpaceEnabled = 0
+        syntax clear IndentLineLeadingSpace
+    endif
 endfunction
 
 "{{{1 function! s:LeadingSpaceToggle()
 function! s:LeadingSpaceToggle()
-    if ! exists("b:indentLine_leadingSpaceEnabled")
-        let b:indentLine_leadingSpaceEnabled = 0
-    endif
-
     if b:indentLine_leadingSpaceEnabled
         call s:LeadingSpaceDisable()
     else

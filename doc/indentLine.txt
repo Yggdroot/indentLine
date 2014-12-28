@@ -112,6 +112,7 @@ g:indentLine_noConcealCursor                    *g:indentLine_noConcealCursor*
 
 g:indentLine_leadingSpaceChar                   *g:indentLine_leadingSpaceChar*
                 Specify a character to show for leading spaces.
+                You also can use other characters:˽˰·
                 e.g. let g:indentLine_leadingSpaceChar = '·'
 
 g:indentLine_leadingSpaceEnabled                *g:indentLine_leadingSpaceEnabled*
