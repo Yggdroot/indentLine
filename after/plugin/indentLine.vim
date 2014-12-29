@@ -22,7 +22,7 @@ let g:indentLine_showFirstIndentLevel = get(g:,'indentLine_showFirstIndentLevel'
 let g:indentLine_maxLines = get(g:,'indentLine_maxLines',3000)
 let g:indentLine_setColors = get(g:,'indentLine_setColors',1)
 let g:indentLine_faster = get(g:,'indentLine_faster',0)
-let g:indentLine_leadingSpaceChar = get(g:,'indentLine_leadingSpaceChar',(&encoding is# "utf-8" && &term isnot# "linux" ? '·' : '.'))
+let g:indentLine_leadingSpaceChar = get(g:,'indentLine_leadingSpaceChar',(&encoding is# "utf-8" && &term isnot# "linux" ? '˰' : '.'))
 let g:indentLine_leadingSpaceEnabled = get(g:,'indentLine_leadingSpaceEnabled',0)
 
 "{{{1 function! s:InitColor()
