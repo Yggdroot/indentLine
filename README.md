@@ -53,6 +53,6 @@ If you think this script is helpful, follow the [GitHub repository][repository],
 ![Screenshot](http://i.imgur.com/2ZA7oaZ.png)
 
 ### Leading Spaces
-![enter image description here](http://i.imgur.com/tLYkb79.png)
+![Screenshot](http://i.imgur.com/tLYkb79.png)
 
-![enter image description here](http://i.imgur.com/Rfr0Nor.png)
+![Screenshot](http://i.imgur.com/07Atrrs.png)
