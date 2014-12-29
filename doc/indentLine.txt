@@ -121,27 +121,27 @@ g:indentLine_leadingSpaceEnabled                *g:indentLine_leadingSpaceEnable
 ==============================================================================
 COMMANDS                                         *indentLine-commands*
 
-IndentLinesReset [number]
+*IndentLinesReset* [number]
                 if 'shiftwidth' changes, using this command can redraw the
                 indentLines. number is optional, it means the width between
                 two indent level, if ommited, value of 'shiftwidth' is used.
 
-IndentLinesToggle
+*IndentLinesToggle*
                 toggle the indent lines of the current buffer.
 
-IndentLinesEnable
+*IndentLinesEnable*
                 enable the indent lines of the current buffer.
 
-IndentLinesDisable
+*IndentLinesDisable*
                 disable the indent lines of the current buffer.
 
-LeadingSpaceEnable
+*LeadingSpaceEnable*
                 enable the leading spaces of the current buffer.
 
-LeadingSpaceDisable
+*LeadingSpaceDisable*
                 disable the leading spaces of the current buffer.
 
-LeadingSpaceToggle
+*LeadingSpaceToggle*
                 toggle the leading spaces of the current buffer.
 ==============================================================================
 FAQ                                              *indentLine-faq*
