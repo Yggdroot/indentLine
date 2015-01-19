@@ -104,10 +104,8 @@ endfunction
 
 "{{{1 function! s:IndentLinesDisable()
 function! s:IndentLinesDisable()
-    if b:indentLine_enabled
-        let b:indentLine_enabled = 0
-        syntax clear IndentLine
-    endif
+    let b:indentLine_enabled = 0
+    syntax clear IndentLine
 endfunction
 
 "{{{1 function! s:IndentLinesToggle()
