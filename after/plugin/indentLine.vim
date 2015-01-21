@@ -116,10 +116,11 @@ endfunction
 
 "{{{1 function! s:IndentLinesDisable()
 function! s:IndentLinesDisable()
-    if exists("b:indentLine_enabled") && b:indentLine_enabled
-        let b:indentLine_enabled = 0
+    let b:indentLine_enabled = 0
+    try
         syntax clear IndentLine
-    endif
+    catch /^Vim\%((\a\+)\)\=:E28/	" catch error E28
+    endtry
 endfunction
 
 "{{{1 function! s:IndentLinesToggle()
@@ -189,10 +190,11 @@ endfunction
 
 "{{{1 function! s:LeadingSpaceDisable()
 function! s:LeadingSpaceDisable()
-    if exists("b:indentLine_leadingSpaceEnabled") && b:indentLine_leadingSpaceEnabled
-        let b:indentLine_leadingSpaceEnabled = 0
+    let b:indentLine_leadingSpaceEnabled = 0
+    try
         syntax clear IndentLineLeadingSpace
-    endif
+    catch /^Vim\%((\a\+)\)\=:E28/	" catch error E28
+    endtry
 endfunction
 
 "{{{1 function! s:LeadingSpaceToggle()
