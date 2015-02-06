@@ -11,8 +11,8 @@ endif
 let g:indentLine_loaded = 1
 
 
-let g:indentLine_char = get(g:,'indentLine_char',(&encoding is# "utf-8" && &term isnot# "linux" ? '¦' : '|'))
-let g:indentLine_first_char = get(g:,'indentLine_first_char',(&encoding is# "utf-8" && &term isnot# "linux"  ? '¦' : '|'))
+let g:indentLine_char = get(g:,'indentLine_char',(&encoding ==# "utf-8" && &term isnot# "linux" ? '¦' : '|'))
+let g:indentLine_first_char = get(g:,'indentLine_first_char',(&encoding ==# "utf-8" && &term isnot# "linux"  ? '¦' : '|'))
 let g:indentLine_indentLevel = get(g:,'indentLine_indentLevel',10)
 let g:indentLine_enabled = get(g:,'indentLine_enabled',1)
 let g:indentLine_fileType = get(g:,'indentLine_fileType',[])
@@ -22,7 +22,7 @@ let g:indentLine_showFirstIndentLevel = get(g:,'indentLine_showFirstIndentLevel'
 let g:indentLine_maxLines = get(g:,'indentLine_maxLines',3000)
 let g:indentLine_setColors = get(g:,'indentLine_setColors',1)
 let g:indentLine_faster = get(g:,'indentLine_faster',0)
-let g:indentLine_leadingSpaceChar = get(g:,'indentLine_leadingSpaceChar',(&encoding is# "utf-8" && &term isnot# "linux" ? '˰' : '.'))
+let g:indentLine_leadingSpaceChar = get(g:,'indentLine_leadingSpaceChar',(&encoding ==# "utf-8" && &term isnot# "linux" ? '˰' : '.'))
 let g:indentLine_leadingSpaceEnabled = get(g:,'indentLine_leadingSpaceEnabled',0)
 
 "{{{1 function! s:InitColor()
@@ -32,7 +32,7 @@ function! s:InitColor()
     endif
 
     if ! exists("g:indentLine_color_term")
-        if &background is# "light"
+        if &background ==# "light"
             let term_color = 249
         else
             let term_color = 239
@@ -42,7 +42,7 @@ function! s:InitColor()
     endif
 
     if ! exists("g:indentLine_color_gui")
-        if &background is# "light"
+        if &background ==# "light"
             let gui_color = "Grey70"
         else
             let gui_color = "Grey30"
@@ -54,8 +54,8 @@ function! s:InitColor()
     execute "highlight Conceal ctermfg=" . term_color . " ctermbg=NONE"
     execute "highlight Conceal guifg=" . gui_color .  " guibg=NONE"
 
-    if &term is# "linux"
-        if &background is# "light"
+    if &term ==# "linux"
+        if &background ==# "light"
             let tty_color = exists("g:indentLine_color_tty_light") ? g:indentLine_color_tty_light : 4
         else
             let tty_color = exists("g:indentLine_color_tty_dark") ? g:indentLine_color_tty_dark : 2
@@ -155,7 +155,7 @@ function! s:Setup()
         return
     endif
 
-    if &filetype is# ""
+    if &filetype ==# ""
         call s:InitColor()
     endif
 
