@@ -9,7 +9,7 @@ This plugin takes advantage of the newly provided `conceal` feature in Vim 7.3, 
 ## Installation
 To install the plugin just put the plugin files in your `~/.vim` (Linux) or `~/vimfiles` (Windows).
 
-If you use a plugin manager you can put the whole directory into your `~/.vim/bundle/` directory ([Pathogen][pathogen]) or add the line `Bundle 'Yggdroot/indentLine'` to your `.vimrc` ([Vundle][vundle]).
+If you use a plugin manager you can put the whole directory into your `~/.vim/bundle/` directory ([Pathogen][pathogen]) or add the line `Plugin 'Yggdroot/indentLine'` to your `.vimrc` ([Vundle][vundle]).
 
 ## Customization
 You can change the color of indentLines:  
