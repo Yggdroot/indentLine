@@ -202,6 +202,7 @@ augroup indentLine
     autocmd!
     autocmd BufWinEnter * call <SID>Setup()
     autocmd BufRead,BufNewFile,ColorScheme,Syntax * call <SID>InitColor()
+    autocmd BufUnload * unlet! b:indentLine_enabled
 augroup END
 
 "{{{1 commands
