@@ -12,13 +12,36 @@ To install the plugin just put the plugin files in your `~/.vim` (Linux) or `~/v
 If you use a plugin manager you can put the whole directory into your `~/.vim/bundle/` directory ([Pathogen][pathogen]) or add the line `Plugin 'Yggdroot/indentLine'` to your `.vimrc` ([Vundle][vundle]).
 
 ## Customization
-You can change the color of indentLines:  
-for Vim, set `g:indentLine_color_term` in your `.vimrc`, e.g. `let g:indentLine_color_term = 239`,  
-for GVim, set `g:indentLine_color_gui` in your `.vimrc`, e.g. `let g:indentLine_color_gui = '#A4E57E'`  
-for none X terminal, set `g:indentLine_color_tty_light` and `g:indentLine_color_tty_dark` in your `.vimrc`. e.g. `let g:indentLine_color_tty_light = 7`(default: 4), `let g:indentLine_color_dark = 1`(default: 2).
+To apply customization, apply the variable definitions to your `.vimrc` file.
 
-You can also change the indentLine char:  
-for both Vim and GVim, set `let g:indentLine_char = 'c'` where `'c'` can be any ASCII character. You can also use one of `¦`, `┆`, `︙` or `│` to display more beautiful lines. However, these characters will only work with files whose encoding is UTF-8.
+**Change Character Color**
+```
+" Vim
+let g:indentLine_color_term = 239
+
+"GVim
+let g:indentLine_color_gui = '#A4E57E'
+
+" none X terminal
+let g:indentLine_color_tty_light = 7 " (default: 4)
+let g:indentLine_color_dark = 1 " (default: 2)
+```
+
+**Chnage Indent Char**
+
+Vim and GVim
+```
+let g:indentLine_char = 'c'
+```
+where `'c'` can be any ASCII character. You can also use one of `¦`, `┆`, `︙` or `│` to display more beautiful lines. However, these characters will only work with files whose encoding is UTF-8.
+
+**Disable by default**
+```
+let g:indentLine_enabled = 0
+```
+
+### Commands
+`:IndentLinesToggle` toggles lines on and off.
 
 ### Font patching
 If you find all the standard unicode and ASCII characters too obtrusive, you might consider patching your font with the [indentLine-dotted-guide.eps][glyph] glyph provided.  [FontForge][fontforge] makes the process amazingly simple:
