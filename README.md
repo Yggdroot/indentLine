@@ -27,7 +27,7 @@ let g:indentLine_color_tty_light = 7 " (default: 4)
 let g:indentLine_color_dark = 1 " (default: 2)
 ```
 
-**Chnage Indent Char**
+**Change Indent Char**
 
 Vim and GVim
 ```
