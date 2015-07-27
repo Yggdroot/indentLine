@@ -71,7 +71,9 @@ function! s:SetConcealOption()
         if ! exists("g:indentLine_noConcealCursor")
             setlocal concealcursor=inc
         endif
-        setlocal conceallevel=2
+        if &conceallevel == 0 || &conceallevel == 3
+            setlocal conceallevel=2
+        endif
     endif
 endfunction
 
