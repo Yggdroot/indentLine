@@ -64,7 +64,7 @@ g:indentLine_indentLevel                        *g:indentLine_indentLevel*
 
 g:indentLine_showFirstIndentLevel               *g:indentLine_showFirstIndentLevel*
                 Specify whether the first indent level should be shown.
-                This is useful if you use indentLine in comination with
+                This is useful if you use indentLine in combination with
                 |listchars| in order to show tabs.
                 Default value is 0.
 
