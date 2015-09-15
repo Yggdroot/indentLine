@@ -213,6 +213,7 @@ command! IndentLinesDisable call <SID>IndentLinesDisable()
 command! LeadingSpaceEnable call <SID>LeadingSpaceEnable()
 command! LeadingSpaceDisable call <SID>LeadingSpaceDisable()
 command! LeadingSpaceToggle call <SID>LeadingSpaceToggle()
+command! IndentLinesInitColor call <SID>InitColor()
 
 " vim:et:ts=4:sw=4:fdm=marker:fmr={{{,}}}
 
