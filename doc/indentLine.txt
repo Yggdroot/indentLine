@@ -105,10 +105,17 @@ g:indentLine_faster                             *g:indentLine_faster*
                 1, default value is 0. But better performance may bring little
                 issue with it.
 
-g:indentLine_noConcealCursor                    *g:indentLine_noConcealCursor*
+g:indentLine_concealcursor                    *g:indentLine_concealcursor*
                 This variable toggles cursor lines behavior. If variable
-                exists, then cursorline will be above conceal chars.
-                Default value is not set.
+                exists and is empty, that is, set to '', then the indentlines
+                will not show up in the cursorline. 
+                See *concealcursor*.
+                Default value is 'inc'.
+
+g:indentLine_concealleavel                    *g:indentLine_conceallevel*
+                This variable toggles the concealing behavior.
+                See *concealleavel*.
+                Default value is '2'.
 
 g:indentLine_leadingSpaceChar                   *g:indentLine_leadingSpaceChar*
                 Specify a character to show for leading spaces.
