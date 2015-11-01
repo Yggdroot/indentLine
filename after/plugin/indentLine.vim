@@ -68,10 +68,8 @@ endfunction
 function! s:SetConcealOption()
     if ! exists("b:indentLine_ConcealOptionSet")
         let b:indentLine_ConcealOptionSet = 1
-        if ! exists("g:indentLine_noConcealCursor")
-            setlocal concealcursor=inc
-        endif
-        setlocal conceallevel=2
+        let &l:concealcursor = exists("g:indentLine_concealcursor") ? g:indentLine_concealcursor : "inc"
+        let &l:conceallevel = exists("g:indentLine_conceallevel") ? g:indentLine_conceallevel : "2"
     endif
 endfunction
 
