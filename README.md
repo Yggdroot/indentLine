@@ -35,6 +35,15 @@ let g:indentLine_char = 'c'
 ```
 where `'c'` can be any ASCII character. You can also use one of `¦`, `┆`, `︙` or `│` to display more beautiful lines. However, these characters will only work with files whose encoding is UTF-8.
 
+**Change Conceal Behaviour**
+
+Vim 7.3 has a new feature `conceal` [Documentation](http://vimdoc.sourceforge.net/htmldoc/version7.html#new-conceal) to automatically hide a stretch of text based on syntax highlighting.
+
+```
+let g:indentLine_concealcursor = 'vc' (default 'inc')
+let g:indentLine_conceallevel = 0 (default 2)
+```
+
 **Disable by default**
 ```
 let g:indentLine_enabled = 0
