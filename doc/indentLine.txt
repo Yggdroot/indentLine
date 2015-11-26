@@ -112,9 +112,9 @@ g:indentLine_concealcursor                    *g:indentLine_concealcursor*
                 See *concealcursor*.
                 Default value is 'inc'.
 
-g:indentLine_concealleavel                    *g:indentLine_conceallevel*
+g:indentLine_conceallevel                    *g:indentLine_conceallevel*
                 This variable toggles the concealing behavior.
-                See *concealleavel*.
+                See *conceallevel*.
                 Default value is '2'.
 
 g:indentLine_leadingSpaceChar                   *g:indentLine_leadingSpaceChar*
