@@ -157,6 +157,11 @@ function! s:Setup()
         call s:InitColor()
     endif
 
+    call s:EnableFeature()
+endfunction
+
+"{{{1 function! s:EnableFeature()
+function! s:EnableFeature() abort
     if g:indentLine_enabled
         call s:IndentLinesEnable()
     endif
@@ -199,7 +204,8 @@ endfunction
 augroup indentLine
     autocmd!
     autocmd BufWinEnter * call <SID>Setup()
-    autocmd BufRead,BufNewFile,ColorScheme,Syntax * call <SID>InitColor()
+    autocmd Syntax * unlet! b:indentLine_enabled | call <SID>EnableFeature()
+    autocmd BufRead,BufNewFile,ColorScheme * call <SID>InitColor()
     autocmd BufUnload * unlet! b:indentLine_enabled
 augroup END
 
