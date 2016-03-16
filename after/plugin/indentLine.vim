@@ -145,14 +145,6 @@ function! s:Setup()
         endif
     endfor
 
-    if ! exists("b:indentLine_bufNr")
-        let b:indentLine_bufNr = bufnr('%')
-        let g:indentLine_bufNr = bufnr('%')
-    elseif g:indentLine_bufNr != bufnr('%') && &hidden
-        let g:indentLine_bufNr = bufnr('%')
-        return
-    endif
-
     if &filetype ==# ""
         call s:InitColor()
     endif
