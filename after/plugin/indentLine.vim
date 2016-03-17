@@ -24,6 +24,7 @@ let g:indentLine_setColors = get(g:,'indentLine_setColors',1)
 let g:indentLine_faster = get(g:,'indentLine_faster',0)
 let g:indentLine_leadingSpaceChar = get(g:,'indentLine_leadingSpaceChar',(&encoding ==# "utf-8" && &term isnot# "linux" ? '˰' : '.'))
 let g:indentLine_leadingSpaceEnabled = get(g:,'indentLine_leadingSpaceEnabled',0)
+let g:indentLine_mysyntaxfile = fnamemodify(expand("<sfile>"), ":p:h:h")."/syntax/indentLine.vim"
 
 "{{{1 function! s:InitColor()
 function! s:InitColor()
@@ -81,6 +82,8 @@ function! s:IndentLinesEnable()
         let b:indentLine_enabled = 1
     endif
     call s:SetConcealOption()
+
+    let g:mysyntaxfile = g:indentLine_mysyntaxfile
 
     let space = &l:shiftwidth is 0 ? &l:tabstop : &l:shiftwidth
 
@@ -164,6 +167,7 @@ function! s:LeadingSpaceEnable()
         echoerr 'LeadingSpace can not be shown when g:indentLine_faster == 1'
         return
     endif
+    let g:mysyntaxfile = g:indentLine_mysyntaxfile
     let b:indentLine_leadingSpaceEnabled = 1
     call s:SetConcealOption()
     execute 'syntax match IndentLineLeadingSpace /\%(^\s*\)\@<= / containedin=ALLBUT,IndentLine conceal cchar=' . g:indentLine_leadingSpaceChar
@@ -191,10 +195,11 @@ endfunction
 augroup indentLine
     autocmd!
     autocmd BufWinEnter * call <SID>Setup()
+    autocmd User * if exists("b:indentLine_enabled") || exists("b:indentLine_leadingSpaceEnabled") |
+                \ call <SID>Setup() | endif
     autocmd BufRead,BufNewFile,ColorScheme,Syntax * call <SID>InitColor()
-    autocmd BufUnload * unlet! b:indentLine_enabled | unlet! b:indentLine_leadingSpaceEnabled
-    autocmd SourcePre $VIMRUNTIME/syntax/nosyntax.vim unlet! b:indentLine_enabled
-    autocmd SourcePre $VIMRUNTIME/syntax/nosyntax.vim unlet! b:indentLine_leadingSpaceEnabled
+    autocmd BufUnload * let b:indentLine_enabled = 0 | let b:indentLine_leadingSpaceEnabled = 0
+    autocmd SourcePre $VIMRUNTIME/syntax/nosyntax.vim doautoall indentLine BufUnload
 augroup END
 
 "{{{1 commands
