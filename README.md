@@ -37,12 +37,21 @@ where `'c'` can be any ASCII character. You can also use one of `¦`, `┆`, or 
 
 **Change Conceal Behaviour**
 
-Vim 7.3 has a new feature `conceal` [Documentation](http://vimdoc.sourceforge.net/htmldoc/version7.html#new-conceal) to automatically hide a stretch of text based on syntax highlighting.
+This plugin enables the Vim `conceal` feature which automatically hides stretches of text based on syntax highlighting. This setting will apply to all syntax items.
+
+For example, users utilizing the built in json.vim syntax file will no longer see quotation marks in their JSON files.
+
+The default settings are:
 
 ```
-let g:indentLine_concealcursor = 'vc' (default 'inc')
-let g:indentLine_conceallevel = 0 (default 2)
+let g:indentLine_concealcursor = 'inc'
+let g:indentLine_conceallevel = 2
 ```
+
+You can customize these settings, but the plugin will not function if `conceallevel` is not set to 1 or 2.
+
+See the [VIM Reference Manual](http://vimdoc.sourceforge.net/htmldoc/version7.html#new-conceal) for more information on the `conceal` feature.
+
 
 **Disable by default**
 ```
