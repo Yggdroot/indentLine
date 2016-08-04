@@ -97,3 +97,6 @@ If you think this script is helpful, follow the [GitHub repository][repository],
 ![Screenshot](http://i.imgur.com/tLYkb79.png)
 
 ![Screenshot](http://i.imgur.com/07Atrrs.png)
+
+## License
+MIT
