@@ -199,7 +199,8 @@ augroup indentLine
                 \ call <SID>Setup() | endif
     autocmd BufRead,BufNewFile,ColorScheme,Syntax * call <SID>InitColor()
     autocmd BufUnload * let b:indentLine_enabled = 0 | let b:indentLine_leadingSpaceEnabled = 0
-    autocmd SourcePre $VIMRUNTIME/syntax/nosyntax.vim doautoall indentLine BufUnload
+    autocmd SourcePre $VIMRUNTIME/syntax/nosyntax.vim doautocmd indentLine BufUnload
+    autocmd FileChangedShellPost * doautocmd indentLine BufUnload | call <SID>Setup()
 augroup END
 
 "{{{1 commands
