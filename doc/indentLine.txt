@@ -30,6 +30,12 @@ g:indentLine_char                               *g:indentLine_char*
                   | ¦ ┆ │
                 Default value is "|".
 
+g:indentLine_setColors                          *g:indentLine_setColors*
+                By default, indentLine will overwrite 'conceal' color.
+                If you want to highlight conceal with your
+                colorscheme, set this value to 0.
+                Default value is 1.
+
 g:indentLine_first_char                         *g:indentLine_first_char*
                 Specify a character to be used as indent line
                 on the first level.

@@ -15,6 +15,13 @@ If you use a plugin manager you can put the whole directory into your `~/.vim/bu
 To apply customization, apply the variable definitions to your `.vimrc` file.
 
 **Change Character Color**
+
+indentLine will overwrite 'conceal' color with grey by default. If you want to highlight conceal color with your colorscheme, disable by:
+```
+let g:indentLine_setColors = 0
+```
+
+Or you can customize conceal color by: 
 ```
 " Vim
 let g:indentLine_color_term = 239
