@@ -48,7 +48,7 @@ This plugin enables the Vim `conceal` feature which automatically hides stretche
 
 For example, users utilizing the built in json.vim syntax file will no longer see quotation marks in their JSON files.
 
-The default settings are:
+indentLine will overwrite your "concealcursor" and "conceallevel" with default value:
 
 ```
 let g:indentLine_concealcursor = 'inc'
@@ -56,6 +56,11 @@ let g:indentLine_conceallevel = 2
 ```
 
 You can customize these settings, but the plugin will not function if `conceallevel` is not set to 1 or 2.
+
+If you want to keep your conceal settting, put this line to your vim dotfile:
+```
+let g:indentLine_setConceal = 0
+```
 
 See the [VIM Reference Manual](http://vimdoc.sourceforge.net/htmldoc/version7.html#new-conceal) for more information on the `conceal` feature.
 
