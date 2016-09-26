@@ -111,6 +111,12 @@ g:indentLine_faster                             *g:indentLine_faster*
                 1, default value is 0. But better performance may bring little
                 issue with it.
 
+g:indentLine_setConceal
+                The plugin will overwrite your "concealcursor" and
+                "conceallevel" by default. If you want to keep your setting,
+                set this value to 0.
+                Default value is 1.
+
 g:indentLine_concealcursor                    *g:indentLine_concealcursor*
                 This variable toggles cursor lines behavior. If variable
                 exists and is empty, that is, set to '', then the indentlines
