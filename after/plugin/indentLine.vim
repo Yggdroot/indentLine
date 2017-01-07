@@ -199,8 +199,11 @@ endfunction
 augroup indentLine
     autocmd!
     autocmd BufWinEnter * call <SID>Setup()
-    autocmd User * if exists("b:indentLine_enabled") || exists("b:indentLine_leadingSpaceEnabled") |
-                \ call <SID>Setup() | endif
+    autocmd User * if exists("b:indentLine_enabled") && b:indentLine_enabled ||
+                    \ exists("b:indentLine_leadingSpaceEnabled") && b:indentLine_leadingSpaceEnabled |
+                    \ call <SID>Setup() |
+                    \ endif
+
     autocmd BufRead,BufNewFile,ColorScheme,Syntax * call <SID>InitColor()
     autocmd BufUnload * let b:indentLine_enabled = 0 | let b:indentLine_leadingSpaceEnabled = 0
     autocmd SourcePre $VIMRUNTIME/syntax/nosyntax.vim doautocmd indentLine BufUnload
