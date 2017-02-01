@@ -139,6 +139,8 @@ endfunction
 "{{{1 function! s:Setup()
 function! s:Setup()
     if index(g:indentLine_fileTypeExclude, &filetype) isnot -1
+        let &l:concealcursor = ""
+        let &l:conceallevel = "0"
         return
     endif
 
@@ -198,7 +200,7 @@ endfunction
 "{{{1 augroup indentLine
 augroup indentLine
     autocmd!
-    autocmd BufWinEnter * call <SID>Setup()
+    autocmd BufEnter * call <SID>Setup()
     autocmd User * if exists("b:indentLine_enabled") && b:indentLine_enabled ||
                     \ exists("b:indentLine_leadingSpaceEnabled") && b:indentLine_leadingSpaceEnabled |
                     \ call <SID>Setup() |
