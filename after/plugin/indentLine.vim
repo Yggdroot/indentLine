@@ -200,7 +200,7 @@ endfunction
 "{{{1 augroup indentLine
 augroup indentLine
     autocmd!
-    autocmd BufEnter * call <SID>Setup()
+    autocmd BufWinEnter,BufEnter * call <SID>Setup()
     autocmd User * if exists("b:indentLine_enabled") && b:indentLine_enabled ||
                     \ exists("b:indentLine_leadingSpaceEnabled") && b:indentLine_leadingSpaceEnabled |
                     \ call <SID>Setup() |
