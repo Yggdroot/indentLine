@@ -156,6 +156,10 @@ function! s:Setup()
         call s:InitColor()
     endif
 
+    if ! exists("b:indentLine_setup")
+        let b:indentLine_setup = 1
+    endif
+
     if g:indentLine_enabled
         call s:IndentLinesEnable()
     endif
@@ -208,7 +212,7 @@ augroup indentLine
     autocmd BufUnload * let b:indentLine_enabled = 0 | let b:indentLine_leadingSpaceEnabled = 0
     autocmd SourcePre $VIMRUNTIME/syntax/nosyntax.vim doautocmd indentLine BufUnload
     autocmd FileChangedShellPost * doautocmd indentLine BufUnload | call <SID>Setup()
-    autocmd Syntax * doautocmd indentLine BufUnload | call <SID>Setup()
+    autocmd Syntax * doautocmd indentLine BufUnload | if exists("b:indentLine_setup") | call <SID>Setup() | endif
 augroup END
 
 "{{{1 commands
