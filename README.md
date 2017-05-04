@@ -67,7 +67,7 @@ See the [VIM Reference Manual](http://vimdoc.sourceforge.net/htmldoc/version7.ht
 
 **Disable by default**
 ```
-let g:indentLine_enabled = 0
+let g:indentLine_loaded = 1
 ```
 
 ### Commands
