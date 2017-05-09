@@ -141,7 +141,10 @@ function! s:IndentLinesDisable()
     if g:indentLine_newVersion
         if exists("w:indentLine_indentLineId") && ! empty(w:indentLine_indentLineId)
             for id in w:indentLine_indentLineId
-                call matchdelete(id)
+                try
+                    call matchdelete(id)
+                catch /^Vim\%((\a\+)\)\=:E80[23]/
+                endtry
             endfor
             let w:indentLine_indentLineId = []
         endif
@@ -259,7 +262,10 @@ function! s:LeadingSpaceDisable()
     if g:indentLine_newVersion
         if exists("w:indentLine_leadingSpaceId") && ! empty(w:indentLine_leadingSpaceId)
             for id in w:indentLine_leadingSpaceId
-                call matchdelete(id)
+                try
+                    call matchdelete(id)
+                catch /^Vim\%((\a\+)\)\=:E80[23]/
+                endtry
             endfor
             let w:indentLine_leadingSpaceId = []
         endif
