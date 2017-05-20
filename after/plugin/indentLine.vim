@@ -211,6 +211,7 @@ function! s:Filter()
     return 1
 endfunction
 
+"{{{1 function! s:Disable()
 function! s:Disable()
     if exists("b:indentLine_enabled") && b:indentLine_enabled
         return
