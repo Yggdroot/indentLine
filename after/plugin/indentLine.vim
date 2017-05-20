@@ -5,36 +5,36 @@
 
 scriptencoding utf-8
 
-if ! has("conceal") || exists("g:indentLine_loaded")
+if !has("conceal") || exists("g:indentLine_loaded")
     finish
 endif
 let g:indentLine_loaded = 1
 
 let g:indentLine_newVersion = get(g:,'indentLine_newVersion',v:version > 704 || v:version == 704 && has("patch792"))
 
-let g:indentLine_char = get(g:,'indentLine_char',(&encoding ==# "utf-8" && &term isnot# "linux" ? '¦' : '|'))
-let g:indentLine_first_char = get(g:,'indentLine_first_char',(&encoding ==# "utf-8" && &term isnot# "linux"  ? '¦' : '|'))
-let g:indentLine_indentLevel = get(g:,'indentLine_indentLevel',20)
-let g:indentLine_enabled = get(g:,'indentLine_enabled',1)
-let g:indentLine_fileType = get(g:,'indentLine_fileType',[])
-let g:indentLine_fileTypeExclude = get(g:,'indentLine_fileTypeExclude',[])
-let g:indentLine_bufNameExclude = get(g:,'indentLine_bufNameExclude',[])
-let g:indentLine_showFirstIndentLevel = get(g:,'indentLine_showFirstIndentLevel',0)
-let g:indentLine_maxLines = get(g:,'indentLine_maxLines',3000)
-let g:indentLine_setColors = get(g:,'indentLine_setColors',1)
-let g:indentLine_setConceal = get(g:,'indentLine_setConceal',1)
-let g:indentLine_faster = get(g:,'indentLine_faster',0)
-let g:indentLine_leadingSpaceChar = get(g:,'indentLine_leadingSpaceChar',(&encoding ==# "utf-8" && &term isnot# "linux" ? '˰' : '.'))
-let g:indentLine_leadingSpaceEnabled = get(g:,'indentLine_leadingSpaceEnabled',0)
+let g:indentLine_char = get(g:, 'indentLine_char', (&encoding ==# "utf-8" && &term isnot# "linux" ? '¦' : '|'))
+let g:indentLine_first_char = get(g:, 'indentLine_first_char', (&encoding ==# "utf-8" && &term isnot# "linux" ? '¦' : '|'))
+let g:indentLine_indentLevel = get(g:, 'indentLine_indentLevel', 20)
+let g:indentLine_enabled = get(g:, 'indentLine_enabled', 1)
+let g:indentLine_fileType = get(g:, 'indentLine_fileType', [])
+let g:indentLine_fileTypeExclude = get(g:, 'indentLine_fileTypeExclude', [])
+let g:indentLine_bufNameExclude = get(g:, 'indentLine_bufNameExclude', [])
+let g:indentLine_showFirstIndentLevel = get(g:, 'indentLine_showFirstIndentLevel', 0)
+let g:indentLine_maxLines = get(g:, 'indentLine_maxLines', 3000)
+let g:indentLine_setColors = get(g:, 'indentLine_setColors', 1)
+let g:indentLine_setConceal = get(g:, 'indentLine_setConceal', 1)
+let g:indentLine_faster = get(g:, 'indentLine_faster', 0)
+let g:indentLine_leadingSpaceChar = get(g:, 'indentLine_leadingSpaceChar', (&encoding ==# "utf-8" && &term isnot# "linux" ? '˰' : '.'))
+let g:indentLine_leadingSpaceEnabled = get(g:, 'indentLine_leadingSpaceEnabled', 0)
 let g:indentLine_mysyntaxfile = fnamemodify(expand("<sfile>"), ":p:h:h")."/syntax/indentLine.vim"
 
 "{{{1 function! s:InitColor()
 function! s:InitColor()
-    if ! g:indentLine_setColors
+    if !g:indentLine_setColors
         return
     endif
 
-    if ! exists("g:indentLine_color_term")
+    if !exists("g:indentLine_color_term")
         if &background ==# "light"
             let term_color = 249
         else
@@ -44,7 +44,7 @@ function! s:InitColor()
         let term_color = g:indentLine_color_term
     endif
 
-    if ! exists("g:indentLine_color_gui")
+    if !exists("g:indentLine_color_gui")
         if &background ==# "light"
             let gui_color = "Grey70"
         else
@@ -69,10 +69,10 @@ endfunction
 
 "{{{1 function! s:SetConcealOption()
 function! s:SetConcealOption()
-    if ! g:indentLine_setConceal
+    if !g:indentLine_setConceal
         return
     endif
-    if ! exists("b:indentLine_ConcealOptionSet")
+    if !exists("b:indentLine_ConcealOptionSet")
         let b:indentLine_ConcealOptionSet = 1
         let &l:concealcursor = exists("g:indentLine_concealcursor") ? g:indentLine_concealcursor : "inc"
         let &l:conceallevel = exists("g:indentLine_conceallevel") ? g:indentLine_conceallevel : "2"
@@ -90,7 +90,7 @@ function! s:IndentLinesEnable()
             return
         endif
 
-        if ! exists("w:indentLine_indentLineId")
+        if !exists("w:indentLine_indentLineId")
             let w:indentLine_indentLineId = []
         endif
 
@@ -100,7 +100,7 @@ function! s:IndentLinesEnable()
             call add(w:indentLine_indentLineId, matchadd('Conceal', '^ ', 0, -1, {'conceal': g:indentLine_first_char}))
         endif
 
-        let space = &l:shiftwidth is 0 ? &l:tabstop : &l:shiftwidth
+        let space = &l:shiftwidth == 0 ? &l:tabstop : &l:shiftwidth
         for i in range(space+1, space * g:indentLine_indentLevel + 1, space)
             call add(w:indentLine_indentLineId, matchadd('Conceal', '^\s\+\zs\%'.i.'v ', 0, -1, {'conceal': g:indentLine_char}))
         endfor
@@ -118,7 +118,7 @@ function! s:IndentLinesEnable()
 
     let g:mysyntaxfile = g:indentLine_mysyntaxfile
 
-    let space = &l:shiftwidth is 0 ? &l:tabstop : &l:shiftwidth
+    let space = &l:shiftwidth == 0 ? &l:tabstop : &l:shiftwidth
 
     if g:indentLine_showFirstIndentLevel
         execute 'syntax match IndentLine /^ / containedin=ALL conceal cchar=' . g:indentLine_first_char
@@ -151,7 +151,7 @@ function! s:IndentLinesDisable()
 
         return
     endif
-    
+
     let b:indentLine_enabled = 0
     try
         syntax clear IndentLine
@@ -194,16 +194,16 @@ endfunction
 
 "{{{1 function! s:Setup()
 function! s:Setup()
-    if index(g:indentLine_fileTypeExclude, &filetype) isnot -1
+    if index(g:indentLine_fileTypeExclude, &filetype) != -1
         return
     endif
 
-    if len(g:indentLine_fileType) isnot 0 && index(g:indentLine_fileType, &filetype) is -1
+    if len(g:indentLine_fileType) != 0 && index(g:indentLine_fileType, &filetype) == -1
         return
     endif
 
     for name in g:indentLine_bufNameExclude
-        if matchstr(bufname(''), name) is bufname('')
+        if matchstr(bufname(''), name) == bufname('')
             return
         endif
     endfor
@@ -232,7 +232,7 @@ function! s:LeadingSpaceEnable()
             return
         endif
 
-        if ! exists("w:indentLine_leadingSpaceId")
+        if !exists("w:indentLine_leadingSpaceId")
             let w:indentLine_leadingSpaceId = []
         endif
 
@@ -272,7 +272,7 @@ function! s:LeadingSpaceDisable()
 
         return
     endif
-    
+
     let b:indentLine_leadingSpaceEnabled = 0
     try
         syntax clear IndentLineLeadingSpace
