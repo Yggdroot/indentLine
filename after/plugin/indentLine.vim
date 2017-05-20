@@ -192,31 +192,47 @@ function! s:ResetWidth(...)
     call s:IndentLinesEnable()
 endfunction
 
-"{{{1 function! s:Setup()
-function! s:Setup()
+"{{{1 function! s:Filter()
+function! s:Filter()
     if index(g:indentLine_fileTypeExclude, &filetype) != -1
-        return
+        return 0
     endif
 
     if len(g:indentLine_fileType) != 0 && index(g:indentLine_fileType, &filetype) == -1
-        return
+        return 0
     endif
 
     for name in g:indentLine_bufNameExclude
         if matchstr(bufname(''), name) == bufname('')
-            return
+            return 0
         endif
     endfor
 
+    return 1
+endfunction
+
+function! s:Disable()
+    if exists("b:indentLine_enabled") && b:indentLine_enabled
+        return
+    elseif exists("b:indentLine_leadingSpaceEnabled") && b:indentLine_leadingSpaceEnabled
+        return
+    elseif s:Filter() == 0
+        call s:IndentLinesDisable()
+        call s:LeadingSpaceDisable()
+    endif
+endfunction
+
+"{{{1 function! s:Setup()
+function! s:Setup()
     if &filetype ==# ""
         call s:InitColor()
     endif
 
-    if g:indentLine_enabled || exists("b:indentLine_enabled") && b:indentLine_enabled
+    if s:Filter() && g:indentLine_enabled || exists("b:indentLine_enabled") && b:indentLine_enabled
         call s:IndentLinesEnable()
     endif
 
-    if g:indentLine_leadingSpaceEnabled || exists("b:indentLine_leadingSpaceEnabled") && b:indentLine_leadingSpaceEnabled
+    if s:Filter() && g:indentLine_leadingSpaceEnabled || exists("b:indentLine_leadingSpaceEnabled") && b:indentLine_leadingSpaceEnabled
         call s:LeadingSpaceEnable()
     endif
 endfunction
@@ -295,10 +311,8 @@ function! s:LeadingSpaceToggle()
     endif
 
     if exists("b:indentLine_leadingSpaceEnabled") && b:indentLine_leadingSpaceEnabled
-        let b:indentLine_leadingSpaceEnabled = 0
         call s:LeadingSpaceDisable()
     else
-        let b:indentLine_leadingSpaceEnabled = 1
         call s:LeadingSpaceEnable()
     endif
 endfunction
@@ -310,6 +324,7 @@ augroup indentLine
         autocmd BufRead,BufNewFile,ColorScheme,Syntax * call <SID>InitColor()
         autocmd BufWinEnter * call <SID>IndentLinesDisable() | call <SID>LeadingSpaceDisable() | call <SID>Setup()
         autocmd WinEnter * call <SID>Setup()
+        autocmd FileType * call <SID>Disable()
     else
         autocmd BufWinEnter * call <SID>Setup()
         autocmd User * if exists("b:indentLine_enabled") || exists("b:indentLine_leadingSpaceEnabled") |
