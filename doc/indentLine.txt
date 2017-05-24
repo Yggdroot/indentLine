@@ -5,6 +5,7 @@ Introduction                                    |indentLine-introduction|
 Config                                          |indentLine-config|
 Variables                                       |indentLine-variables|
 Commands                                        |indentLine-commands|
+Mappings                                        |indentLine-mappings|
 FAQ                                             |indentLine-faq|
 Changelog                                       |indentLine-changelog|
 Credits                                         |indentLine-credits|
@@ -162,6 +163,13 @@ COMMANDS                                         *indentLine-commands*
 
 *LeadingSpaceToggle*
                 toggle the leading spaces of the current buffer.
+==============================================================================
+MAPPINGS                                         *indentLine-mappings*
+
+<leader>ti      show/hide indentation lines
+<Leader>t+      increment tabstop and refresh
+<Leader>t-      decrement tabstop and refresh
+
 ==============================================================================
 FAQ                                              *indentLine-faq*
 

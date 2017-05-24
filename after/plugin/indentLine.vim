@@ -28,6 +28,7 @@ let g:indentLine_leadingSpaceChar = get(g:, 'indentLine_leadingSpaceChar', (&enc
 let g:indentLine_leadingSpaceEnabled = get(g:, 'indentLine_leadingSpaceEnabled', 0)
 let g:indentLine_mysyntaxfile = fnamemodify(expand("<sfile>"), ":p:h:h")."/syntax/indentLine.vim"
 
+let g:indentLine_tab = 3
 "{{{1 function! s:InitColor()
 function! s:InitColor()
     if !g:indentLine_setColors
@@ -318,6 +319,19 @@ function! s:LeadingSpaceToggle()
     endif
 endfunction
 
+"{{{1 function! SetTab(incr)
+function! SetTab(incr)
+   let g:indentLine_tab = g:indentLine_tab + a:incr
+   if g:indentLine_tab < 1
+      let g:indentLine_tab = 1
+   endif
+   let &tabstop=g:indentLine_tab
+   let &softtabstop=g:indentLine_tab
+   let &shiftwidth=g:indentLine_tab
+   echo 'tabstop: ' . g:indentLine_tab
+   call s:ResetWidth()
+endfunction
+
 "{{{1 augroup indentLine
 augroup indentLine
     autocmd!
@@ -353,5 +367,9 @@ else
 endif
 command! LeadingSpaceToggle call <SID>LeadingSpaceToggle()
 
+"{{{1 mappings
+map <silent> <Leader>t+ :call SetTab(1)<CR>
+map <silent> <Leader>t- :call SetTab(-1)<CR>
+nmap <leader>ti :IndentLinesToggle<CR>
 " vim:et:ts=4:sw=4:fdm=marker:fmr={{{,}}}
 
