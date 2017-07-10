@@ -54,8 +54,8 @@ function! s:InitColor()
         let gui_color = g:indentLine_color_gui
     endif
 
-    execute "highlight Conceal ctermfg=" . term_color . " ctermbg=NONE"
-    execute "highlight Conceal guifg=" . gui_color .  " guibg=NONE"
+    execute "highlight Conceal cterm=NONE ctermfg=" . term_color . " ctermbg=NONE"
+    execute "highlight Conceal gui=NONE guifg=" . gui_color .  " guibg=NONE"
 
     if &term ==# "linux"
         if &background ==# "light"
