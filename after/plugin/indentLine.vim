@@ -44,6 +44,12 @@ function! s:InitColor()
         let term_color = g:indentLine_color_term
     endif
 
+    if !exists("g:indentLine_bgcolor_term")
+        let term_bgcolor = "NONE"
+    else
+        let term_bgcolor = g:indentLine_bgcolor_term
+    endif
+
     if !exists("g:indentLine_color_gui")
         if &background ==# "light"
             let gui_color = "Grey70"
@@ -54,8 +60,14 @@ function! s:InitColor()
         let gui_color = g:indentLine_color_gui
     endif
 
-    execute "highlight Conceal cterm=NONE ctermfg=" . term_color . " ctermbg=NONE"
-    execute "highlight Conceal gui=NONE guifg=" . gui_color .  " guibg=NONE"
+    if !exists("g:indentLine_bgcolor_gui")
+        let gui_bgcolor = "NONE"
+    else
+        let gui_bgcolor = g:indentLine_bgcolor_gui
+    endif
+
+    execute "highlight Conceal cterm=NONE ctermfg=" . term_color . " ctermbg=" . term_bgcolor
+    execute "highlight Conceal gui=NONE guifg=" . gui_color .  " guibg=" . gui_bgcolor
 
     if &term ==# "linux"
         if &background ==# "light"
