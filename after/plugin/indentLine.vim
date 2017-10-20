@@ -336,7 +336,6 @@ augroup indentLine
     if g:indentLine_newVersion
         autocmd BufRead,BufNewFile,ColorScheme,Syntax * call <SID>InitColor()
         autocmd BufWinEnter * call <SID>IndentLinesDisable() | call <SID>LeadingSpaceDisable() | call <SID>Setup()
-        autocmd WinEnter * call <SID>Setup()
         autocmd FileType * call <SID>Disable()
     else
         autocmd BufWinEnter * call <SID>Setup()
