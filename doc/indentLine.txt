@@ -49,7 +49,7 @@ g:indentLine_color_term                         *g:indentLine_color_term*
 
 g:indentLine_bgcolor_term                       *g:indentLine_bgcolor_term*
                 Specify terminal vim indent line background color.
-                e.g.  let g:indentLine_color_term = 202
+                e.g.  let g:indentLine_bgcolor_term = 202
 
 
 g:indentLine_color_gui                          *g:indentLine_color_gui*
