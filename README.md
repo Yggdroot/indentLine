@@ -116,4 +116,3 @@ If you think this script is helpful, follow the [GitHub repository][repository],
 
 ## License
 - MIT
-- 知道vim normal模式下使用`gg`命令**后果**的人禁止使用。
