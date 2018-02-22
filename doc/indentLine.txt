@@ -99,7 +99,14 @@ g:indentLine_fileTypeExclude                    *g:indentLine_fileTypeExclude*
                 When opening these types of files, the plugin is disabled by
                 default.
                 e.g. let g:indentLine_fileTypeExclude = ['text', 'sh']
-                Default value is [] which means no file types is excluded.
+                Default value is [] which means no file types are excluded.
+
+g:indentLine_bufTypeExclude                    *g:indentLine_bufTypeExclude*
+                This variable specify a list of buffer types.
+                When opening these types of buffers, the plugin is disabled
+                by default.
+                e.g. let g:indentLine_bufTypeExclude = ['help', 'terminal']
+                Default value is [] which means no buffer type is excluded.
 
 g:indentLine_bufNameExclude                     *g:indentLine_bufNameExclude*
                 This variable specify a list of buffer names, which can be
