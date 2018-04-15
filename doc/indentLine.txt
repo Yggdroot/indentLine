@@ -180,10 +180,14 @@ COMMANDS                                         *indentLine-commands*
 ==============================================================================
 FAQ                                              *indentLine-faq*
 
-Q. How can I make the indent line visuall similar to the line used in Sublime
+Q. How can I make the indent line visual similar to the line used in Sublime
     Text 2?
 
 A. Use let g:indentLine_char = '┊'
+
+Q. I don't see quotes in JSON.
+
+A. Use let g:vim_json_syntax_conceal = 0 or run :IndentLinesDisable
 
 ==============================================================================
 CHANGELOG                                        *indentLine-changelog*
