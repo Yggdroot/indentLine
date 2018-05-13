@@ -17,12 +17,12 @@ To apply customization, apply the variable definitions to your `.vimrc` file.
 **Change Character Color**
 
 indentLine will overwrite 'conceal' color with grey by default. If you want to highlight conceal color with your colorscheme, disable by:
-```
+```vim
 let g:indentLine_setColors = 0
 ```
 
 Or you can customize conceal color by: 
-```
+```vim
 " Vim
 let g:indentLine_color_term = 239
 
@@ -41,7 +41,7 @@ let g:indentLine_bgcolor_gui = '#FF5F00'
 **Change Indent Char**
 
 Vim and GVim
-```
+```vim
 let g:indentLine_char = 'c'
 ```
 where `'c'` can be any ASCII character. You can also use one of `¦`, `┆`, `│`, `⎸`, or `▏` to display more beautiful lines. However, these characters will only work with files whose encoding is UTF-8.
@@ -54,7 +54,7 @@ For example, users utilizing the built in json.vim syntax file will no longer se
 
 indentLine will overwrite your "concealcursor" and "conceallevel" with default value:
 
-```
+```vim
 let g:indentLine_concealcursor = 'inc'
 let g:indentLine_conceallevel = 2
 ```
@@ -62,7 +62,7 @@ let g:indentLine_conceallevel = 2
 You can customize these settings, but the plugin will not function if `conceallevel` is not set to 1 or 2.
 
 If you want to keep your conceal setting, put this line to your vim dotfile:
-```
+```vim
 let g:indentLine_setConceal = 0
 ```
 
@@ -70,7 +70,7 @@ See the [VIM Reference Manual](http://vimdoc.sourceforge.net/htmldoc/version7.ht
 
 
 **Disable by default**
-```
+```vim
 let g:indentLine_enabled = 0
 ```
 
