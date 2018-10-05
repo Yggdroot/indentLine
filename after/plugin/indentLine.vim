@@ -107,8 +107,12 @@ endfunction
 
 function! s:ResetConcealOption()
     if exists("b:indentLine_ConcealOptionSet") && b:indentLine_ConcealOptionSet
-        let &l:concealcursor = b:indentLine_original_concealcursor
-        let &l:conceallevel = b:indentLine_original_conceallevel
+        if exists("b:indentLine_original_concealcursor")
+            let &l:concealcursor = b:indentLine_original_concealcursor
+        endif
+        if exists("b:indentLine_original_conceallevel")
+            let &l:conceallevel = b:indentLine_original_conceallevel
+        endif
         let b:indentLine_ConcealOptionSet = 0
     endif
 endfunction
