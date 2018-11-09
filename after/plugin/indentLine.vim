@@ -48,8 +48,8 @@ function! s:InitColor()
 
     if g:indentLine_defaultGroup != ""
         let default_id = synIDtrans(hlID(g:indentLine_defaultGroup))
-        let default_term_fg = synIDattr(default_id, "fg", "term") == "" ? default_term_fg :  synIDattr(default_id, "fg", "term")
-        let default_term_bg = synIDattr(default_id, "bg", "term") == "" ? default_term_bg :  synIDattr(default_id, "bg", "term")
+        let default_term_fg = synIDattr(default_id, "fg", "cterm") == "" ? default_term_fg :  synIDattr(default_id, "fg", "cterm")
+        let default_term_bg = synIDattr(default_id, "bg", "cterm") == "" ? default_term_bg :  synIDattr(default_id, "bg", "cterm")
         let default_gui_fg = synIDattr(default_id, "fg", "gui") == "" ? default_gui_fg :  synIDattr(default_id, "fg", "gui")
         let default_gui_bg = synIDattr(default_id, "bg", "gui") == "" ? default_gui_bg :  synIDattr(default_id, "bg", "gui")
     endif
