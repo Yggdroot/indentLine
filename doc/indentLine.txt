@@ -154,7 +154,7 @@ g:indentLine_leadingSpaceEnabled                *g:indentLine_leadingSpaceEnable
                 Default value is 0.
 
 g:indentLine_defaultGroup                       *g:indentLine_defaultGroup*
-                Spceify a highlight group to use for default values
+                Specify a highlight group to use for default values
 				of g:indentLine_[bg]color_(term|gui)
 ==============================================================================
 COMMANDS                                         *indentLine-commands*
