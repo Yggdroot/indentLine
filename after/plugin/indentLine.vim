@@ -365,7 +365,7 @@ endfunction
 augroup indentLine
     autocmd!
     if g:indentLine_newVersion
-        autocmd BufRead,BufNewFile,ColorScheme,Syntax * call <SID>InitColor()
+        autocmd BufEnter,BufWinEnter,BufRead,BufNewFile,ColorScheme,Syntax * call <SID>InitColor()
         if exists("##WinNew")
             autocmd WinNew * call <SID>Setup()
         endif
