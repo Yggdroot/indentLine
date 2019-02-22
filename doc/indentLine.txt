@@ -20,15 +20,19 @@ CONFIG                                          *indentLine-config*
 ==============================================================================
 VARIABLES                                       *indentLine-variables*
 
-g:indentLine_loaded                             *g:loaded_indentLine*
-                Whether load indentLine plugin.
-                Default value is 0.
-
 g:indentLine_char                               *g:indentLine_char*
-                Specify a character to be used as indent line.
+                Specify a character to be used as indent line if
+                |g:indentLine_char_list| is not [].
                 You also can use other characters:
                   | ¦ ┆ │
                 Default value is "|".
+
+g:indentLine_char_list                          *g:indentLine_char_list*
+                Specify a list of characters to be used as indent line for
+                each indent level. If the value is an empty list [], use
+                |g:indentLine_char| instead.
+                e.g., let g:indentLine_char_list = ['|', '¦', '┆', '┊']
+                Default value is [].
 
 g:indentLine_setColors                          *g:indentLine_setColors*
                 By default, indentLine will overwrite 'conceal' color.

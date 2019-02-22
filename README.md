@@ -46,6 +46,12 @@ let g:indentLine_char = 'c'
 ```
 where `'c'` can be any ASCII character. You can also use one of `¦`, `┆`, `│`, `⎸`, or `▏` to display more beautiful lines. However, these characters will only work with files whose encoding is UTF-8.
 
+or
+```vim
+let g:indentLine_char_list = ['|', '¦', '┆', '┊']
+```
+each indent level has a distinct character.
+
 **Change Conceal Behaviour**
 
 This plugin enables the Vim `conceal` feature which automatically hides stretches of text based on syntax highlighting. This setting will apply to all syntax items.
