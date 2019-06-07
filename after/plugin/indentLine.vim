@@ -30,6 +30,7 @@ let g:indentLine_faster = get(g:, 'indentLine_faster', 0)
 let g:indentLine_leadingSpaceChar = get(g:, 'indentLine_leadingSpaceChar', (&encoding ==# "utf-8" && &term isnot# "linux" ? '˰' : '.'))
 let g:indentLine_leadingSpaceEnabled = get(g:, 'indentLine_leadingSpaceEnabled', 0)
 let g:indentLine_mysyntaxfile = fnamemodify(expand("<sfile>"), ":p:h:h")."/syntax/indentLine.vim"
+let g:indentLine_right_align = get(g:, 'indentLine_right_align', 0)
 
 "{{{1 function! s:InitColor()
 function! s:InitColor()
@@ -135,14 +136,15 @@ function! s:IndentLinesEnable()
 
         call s:SetConcealOption()
 
+        let space = &l:shiftwidth == 0 ? &l:tabstop : &l:shiftwidth
+        let space_start = g:indentLine_right_align == 0 ? space + 1 : space * 2
         if g:indentLine_showFirstIndentLevel
-            call add(w:indentLine_indentLineId, matchadd('Conceal', '^ ', 0, -1, {'conceal': g:indentLine_first_char}))
+            call add(w:indentLine_indentLineId, matchadd('Conceal', '^\s*\zs\%'.(space_start - space).'v ', 0, -1, {'conceal': g:indentLine_first_char}))
         endif
 
-        let space = &l:shiftwidth == 0 ? &l:tabstop : &l:shiftwidth
         let n = len(g:indentLine_char_list)
         let level = 0
-        for i in range(space+1, space * g:indentLine_indentLevel + 1, space)
+        for i in range(space_start, space * g:indentLine_indentLevel + 1, space)
             if n > 0
                 let char = g:indentLine_char_list[level % n]
                 let level += 1
