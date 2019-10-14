@@ -280,13 +280,17 @@ function! s:Setup()
     if &filetype ==# ""
         call s:InitColor()
     endif
-
-    if s:Filter() && g:indentLine_enabled || exists("b:indentLine_enabled") && b:indentLine_enabled
-        call s:IndentLinesEnable()
+    
+    if exists("b:indentLine_enabled") && b:indentLine_enabled
+        if s:Filter() && g:indentLine_enabled
+            call s:IndentLinesEnable()
+        endif
     endif
 
-    if s:Filter() && g:indentLine_leadingSpaceEnabled || exists("b:indentLine_leadingSpaceEnabled") && b:indentLine_leadingSpaceEnabled
-        call s:LeadingSpaceEnable()
+    if exists("b:indentLine_leadingSpaceEnabled") && b:indentLine_leadingSpaceEnabled
+        if s:Filter() && g:indentLine_leadingSpaceEnabled 
+            call s:LeadingSpaceEnable()
+        endif    
     endif
 endfunction
 
