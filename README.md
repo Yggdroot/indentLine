@@ -7,9 +7,17 @@ This plugin is used for displaying thin vertical lines at each indentation level
 This plugin takes advantage of the newly provided `conceal` feature in Vim 7.3, so this plugin will not work with lower versions of Vim.
 
 ## Installation
-To install the plugin just put the plugin files in your `~/.vim` (Linux) or `~/vimfiles` (Windows).
+If you are using VIM version 8 or higher you can use its built-in package management; see `:help packages` for more information. Just run these commands in your terminal:
+```bash
+git clone https://github.com/Yggdroot/indentLine.git ~/.vim/pack/vendor/start/indentLint
+vim -u NONE -c "helptags  ~/.vim/pack/vendor/start/indentLint/doc" -c "q"
+```
 
-If you use a plugin manager you can put the whole directory into your `~/.vim/bundle/` directory ([Pathogen][pathogen]) or add the line `Plugin 'Yggdroot/indentLine'` to your `.vimrc` ([Vundle][vundle]).
+Otherwise, these are some of the other options:
+
+* To install the plugin just put the plugin files in your `~/.vim` (Linux) or `~/vimfiles` (Windows).
+
+* If you use a plugin manager you can put the whole directory into your `~/.vim/bundle/` directory ([Pathogen][pathogen]) or add the line `Plugin 'Yggdroot/indentLine'` to your `.vimrc` ([Vundle][vundle]).
 
 ## Customization
 To apply customization, apply the variable definitions to your `.vimrc` file.
