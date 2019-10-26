@@ -379,7 +379,7 @@ augroup indentLine
             autocmd WinNew * call <SID>Setup()
         endif
         autocmd BufWinEnter * call <SID>IndentLinesDisable() | call <SID>LeadingSpaceDisable() | call <SID>Setup()
-        autocmd FileType * call <SID>Disable()
+        "autocmd FileType * call <SID>Disable()
     else
         autocmd BufWinEnter * call <SID>Setup()
         autocmd User * if exists("b:indentLine_enabled") || exists("b:indentLine_leadingSpaceEnabled") |
