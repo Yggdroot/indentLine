@@ -106,6 +106,7 @@ function! s:SetConcealOption()
     endif
 endfunction
 
+"{{{1 function! s:ResetConcealOption()
 function! s:ResetConcealOption()
     if exists("b:indentLine_ConcealOptionSet") && b:indentLine_ConcealOptionSet
         if exists("b:indentLine_original_concealcursor")
@@ -118,10 +119,21 @@ function! s:ResetConcealOption()
     endif
 endfunction
 
-function! s:CheckDiff()
+"{{{1 function! s:DisableOnDiff()
+function! s:DisableOnDiff()
     if &diff
         call s:IndentLinesDisable()
         call s:LeadingSpaceDisable()
+    endif
+endfunction
+
+"{{{1 function! s:ToggleOnDiff()
+function! s:ToggleOnDiff()
+    if &diff
+        call s:IndentLinesDisable()
+        call s:LeadingSpaceDisable()
+    else
+        call s:Setup()
     endif
 endfunction
 
@@ -373,42 +385,42 @@ endfunction
 augroup indentLine
     autocmd!
     if g:indentLine_newVersion
-        autocmd BufRead,BufNewFile,ColorScheme,Syntax * call <SID>InitColor()
+        autocmd BufRead,BufNewFile,ColorScheme,Syntax * call s:InitColor()
         if exists("##WinNew")
-            autocmd WinNew * call <SID>Setup()
+            autocmd WinNew * call s:Setup()
         endif
-        autocmd BufWinEnter * call <SID>IndentLinesDisable() | call <SID>LeadingSpaceDisable() | call <SID>Setup()
-        autocmd FileType * call <SID>Disable()
-        autocmd OptionSet diff call <SID>IndentLinesDisable() | call s:LeadingSpaceDisable()
-        autocmd VimEnter * noautocmd windo call s:CheckDiff()
+        autocmd BufWinEnter * call s:IndentLinesDisable() | call s:LeadingSpaceDisable() | call s:Setup()
+        autocmd FileType * call s:Disable()
+        autocmd OptionSet diff call s:ToggleOnDiff()
+        autocmd VimEnter * noautocmd windo call s:DisableOnDiff()
     else
-        autocmd BufWinEnter * call <SID>Setup()
+        autocmd BufWinEnter * call s:Setup()
         autocmd User * if exists("b:indentLine_enabled") || exists("b:indentLine_leadingSpaceEnabled") |
-                        \ call <SID>Setup() | endif
-        autocmd BufRead,BufNewFile,ColorScheme,Syntax * call <SID>InitColor()
+                        \ call s:Setup() | endif
+        autocmd BufRead,BufNewFile,ColorScheme,Syntax * call s:InitColor()
         autocmd BufUnload * let b:indentLine_enabled = 0 | let b:indentLine_leadingSpaceEnabled = 0
         autocmd SourcePre $VIMRUNTIME/syntax/nosyntax.vim doautocmd indentLine BufUnload
-        autocmd FileChangedShellPost * doautocmd indentLine BufUnload | call <SID>Setup()
-        autocmd OptionSet diff call <SID>IndentLinesDisable() | call s:LeadingSpaceDisable()
-        autocmd VimEnter * noautocmd windo call s:CheckDiff()
+        autocmd FileChangedShellPost * doautocmd indentLine BufUnload | call s:Setup()
+        autocmd OptionSet diff call s:ToggleOnDiff()
+        autocmd VimEnter * noautocmd windo call s:DisableOnDiff()
     endif
 augroup END
 
 "{{{1 commands
-command! -nargs=? IndentLinesReset call <SID>ResetWidth(<f-args>)
-command! IndentLinesToggle call <SID>IndentLinesToggle()
+command! -nargs=? IndentLinesReset call s:ResetWidth(<f-args>)
+command! IndentLinesToggle call s:IndentLinesToggle()
 if g:indentLine_newVersion
-    command! IndentLinesEnable let b:indentLine_enabled = 1 | call <SID>IndentLinesEnable()
-    command! IndentLinesDisable let b:indentLine_enabled = 0 | call <SID>IndentLinesDisable()
-    command! LeadingSpaceEnable let b:indentLine_leadingSpaceEnabled = 1 | call <SID>LeadingSpaceEnable()
-    command! LeadingSpaceDisable let b:indentLine_leadingSpaceEnabled = 0 | call <SID>LeadingSpaceDisable()
+    command! IndentLinesEnable let b:indentLine_enabled = 1 | call s:IndentLinesEnable()
+    command! IndentLinesDisable let b:indentLine_enabled = 0 | call s:IndentLinesDisable()
+    command! LeadingSpaceEnable let b:indentLine_leadingSpaceEnabled = 1 | call s:LeadingSpaceEnable()
+    command! LeadingSpaceDisable let b:indentLine_leadingSpaceEnabled = 0 | call s:LeadingSpaceDisable()
 else
-    command! IndentLinesEnable call <SID>IndentLinesEnable()
-    command! IndentLinesDisable call <SID>IndentLinesDisable()
-    command! LeadingSpaceEnable call <SID>LeadingSpaceEnable()
-    command! LeadingSpaceDisable call <SID>LeadingSpaceDisable()
+    command! IndentLinesEnable call s:IndentLinesEnable()
+    command! IndentLinesDisable call s:IndentLinesDisable()
+    command! LeadingSpaceEnable call s:LeadingSpaceEnable()
+    command! LeadingSpaceDisable call s:LeadingSpaceDisable()
 endif
-command! LeadingSpaceToggle call <SID>LeadingSpaceToggle()
+command! LeadingSpaceToggle call s:LeadingSpaceToggle()
 
 " vim:et:ts=4:sw=4:fdm=marker:fmr={{{,}}}
 
