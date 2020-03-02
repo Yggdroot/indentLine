@@ -118,13 +118,16 @@ function! s:ResetConcealOption()
     endif
 endfunction
 
+function! s:CheckDiff()
+    if &diff
+        call s:IndentLinesDisable()
+        call s:LeadingSpaceDisable()
+    endif
+endfunction
+
 "{{{1 function! s:IndentLinesEnable()
 function! s:IndentLinesEnable()
     if g:indentLine_newVersion
-        if &diff
-            return
-        endif
-
         if exists("b:indentLine_enabled") && b:indentLine_enabled == 0
             return
         endif
@@ -293,10 +296,6 @@ endfunction
 "{{{1 function! s:LeadingSpaceEnable()
 function! s:LeadingSpaceEnable()
     if g:indentLine_newVersion
-        if &diff
-            return
-        endif
-
         if exists("b:indentLine_leadingSpaceEnabled") && b:indentLine_leadingSpaceEnabled == 0
             return
         endif
@@ -380,6 +379,8 @@ augroup indentLine
         endif
         autocmd BufWinEnter * call <SID>IndentLinesDisable() | call <SID>LeadingSpaceDisable() | call <SID>Setup()
         autocmd FileType * call <SID>Disable()
+        autocmd OptionSet diff call <SID>IndentLinesDisable() | call s:LeadingSpaceDisable()
+        autocmd VimEnter * noautocmd windo call s:CheckDiff()
     else
         autocmd BufWinEnter * call <SID>Setup()
         autocmd User * if exists("b:indentLine_enabled") || exists("b:indentLine_leadingSpaceEnabled") |
@@ -388,6 +389,8 @@ augroup indentLine
         autocmd BufUnload * let b:indentLine_enabled = 0 | let b:indentLine_leadingSpaceEnabled = 0
         autocmd SourcePre $VIMRUNTIME/syntax/nosyntax.vim doautocmd indentLine BufUnload
         autocmd FileChangedShellPost * doautocmd indentLine BufUnload | call <SID>Setup()
+        autocmd OptionSet diff call <SID>IndentLinesDisable() | call s:LeadingSpaceDisable()
+        autocmd VimEnter * noautocmd windo call s:CheckDiff()
     endif
 augroup END
 
