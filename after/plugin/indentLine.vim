@@ -391,7 +391,9 @@ augroup indentLine
         endif
         autocmd BufWinEnter * call s:IndentLinesDisable() | call s:LeadingSpaceDisable() | call s:Setup()
         autocmd FileType * call s:Disable()
-        autocmd OptionSet diff call s:ToggleOnDiff()
+        if exists("##OptionSet")
+            autocmd OptionSet diff call s:ToggleOnDiff()
+        endif
         autocmd VimEnter * noautocmd windo call s:DisableOnDiff()
     else
         autocmd BufWinEnter * call s:Setup()
@@ -401,7 +403,9 @@ augroup indentLine
         autocmd BufUnload * let b:indentLine_enabled = 0 | let b:indentLine_leadingSpaceEnabled = 0
         autocmd SourcePre $VIMRUNTIME/syntax/nosyntax.vim doautocmd indentLine BufUnload
         autocmd FileChangedShellPost * doautocmd indentLine BufUnload | call s:Setup()
-        autocmd OptionSet diff call s:ToggleOnDiff()
+        if exists("##OptionSet")
+            autocmd OptionSet diff call s:ToggleOnDiff()
+        endif
         autocmd VimEnter * noautocmd windo call s:DisableOnDiff()
     endif
 augroup END
