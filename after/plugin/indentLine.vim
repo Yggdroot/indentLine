@@ -127,6 +127,13 @@ function! s:DisableOnDiff()
     endif
 endfunction
 
+"{{{1 function! s:VimEnter()
+function! s:VimEnter()
+    let init_winnr = winnr()
+    noautocmd windo call s:DisableOnDiff()
+    noautocmd exec init_winnr . "wincmd w"
+endfunction
+
 "{{{1 function! s:ToggleOnDiff()
 function! s:ToggleOnDiff()
     if &diff
@@ -394,7 +401,7 @@ augroup indentLine
         if exists("##OptionSet")
             autocmd OptionSet diff call s:ToggleOnDiff()
         endif
-        autocmd VimEnter * noautocmd windo call s:DisableOnDiff()
+        autocmd VimEnter * call s:VimEnter()
     else
         autocmd BufWinEnter * call s:Setup()
         autocmd User * if exists("b:indentLine_enabled") || exists("b:indentLine_leadingSpaceEnabled") |
@@ -406,7 +413,7 @@ augroup indentLine
         if exists("##OptionSet")
             autocmd OptionSet diff call s:ToggleOnDiff()
         endif
-        autocmd VimEnter * noautocmd windo call s:DisableOnDiff()
+        autocmd VimEnter * call s:VimEnter()
     endif
 augroup END
 
