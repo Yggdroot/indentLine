@@ -254,10 +254,30 @@ endfunction
 "{{{1 function! s:ResetWidth(...)
 function! s:ResetWidth(...)
     if 0 < a:0
-        let &l:shiftwidth = a:1
+        noautocmd let &l:shiftwidth = a:1
     endif
 
     let b:indentLine_enabled = 1
+    call s:IndentLinesDisable()
+    call s:IndentLinesEnable()
+endfunction
+
+"{{{1 function! s:AutoResetWidth()
+function! s:AutoResetWidth()
+
+    let l:enable = get(
+                    \ b:,
+                    \ 'indentLine_enabled',
+                    \ get(g:, 'indentLine_enabled', 1)
+                    \)
+
+    let g:indentLine_autoResetWidth = get(g:, 'indentLine_autoResetWidth', 1)
+
+    if l:enable != 1 || g:indentLine_autoResetWidth != 1
+        return
+    endif
+
+    let b:indentLine_enabled = l:enable
     call s:IndentLinesDisable()
     call s:IndentLinesEnable()
 endfunction
@@ -400,6 +420,7 @@ augroup indentLine
         autocmd FileType * call s:Disable()
         if exists("##OptionSet")
             autocmd OptionSet diff call s:ToggleOnDiff()
+            autocmd OptionSet shiftwidth,tabstop noautocmd call s:AutoResetWidth()
         endif
         autocmd VimEnter * call s:VimEnter()
     else
@@ -412,6 +433,7 @@ augroup indentLine
         autocmd FileChangedShellPost * doautocmd indentLine BufUnload | call s:Setup()
         if exists("##OptionSet")
             autocmd OptionSet diff call s:ToggleOnDiff()
+            autocmd OptionSet shiftwidth,tabstop noautocmd call s:AutoResetWidth()
         endif
         autocmd VimEnter * call s:VimEnter()
     endif
