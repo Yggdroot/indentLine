@@ -105,7 +105,7 @@ g:indentLine_fileTypeExclude                    *g:indentLine_fileTypeExclude*
                 e.g. let g:indentLine_fileTypeExclude = ['text', 'sh']
                 Default value is [] which means no file types are excluded.
 
-g:indentLine_bufTypeExclude                    *g:indentLine_bufTypeExclude*
+g:indentLine_bufTypeExclude                     *g:indentLine_bufTypeExclude*
                 This variable specify a list of buffer types.
                 When opening these types of buffers, the plugin is disabled
                 by default.
@@ -136,14 +136,14 @@ g:indentLine_setConceal
                 set this value to 0.
                 Default value is 1.
 
-g:indentLine_concealcursor                    *g:indentLine_concealcursor*
+g:indentLine_concealcursor                      *g:indentLine_concealcursor*
                 This variable toggles cursor lines behavior. If variable
                 exists and is empty, that is, set to '', then the indentlines
-                will not show up in the cursorline. 
+                will not show up in the cursorline.
                 See *concealcursor*.
                 Default value is 'inc'.
 
-g:indentLine_conceallevel                    *g:indentLine_conceallevel*
+g:indentLine_conceallevel                       *g:indentLine_conceallevel*
                 This variable toggles the concealing behavior.
                 See *conceallevel*.
                 Default value is '2'.
@@ -160,6 +160,12 @@ g:indentLine_leadingSpaceEnabled                *g:indentLine_leadingSpaceEnable
 g:indentLine_defaultGroup                       *g:indentLine_defaultGroup*
                 Specify a highlight group to use for default values
 				of g:indentLine_[bg]color_(term|gui)
+
+g:indentLine_autoResetWidth                     *g:indentLine_autoResetWidth*
+                Specify whether to auto redraw the indentLines after
+                'shiftwidth' or 'tabstop' change.
+                Default value is 1.
+
 ==============================================================================
 COMMANDS                                         *indentLine-commands*
 
