@@ -416,7 +416,14 @@ augroup indentLine
         if exists("##WinNew")
             autocmd WinNew * call s:Setup()
         endif
-        autocmd BufWinEnter * call s:IndentLinesDisable() | call s:LeadingSpaceDisable() | call s:Setup()
+        autocmd BufWinEnter,BufEnter * call s:IndentLinesDisable() | call s:LeadingSpaceDisable() | call s:Setup()
+
+        if has("nvim")
+            autocmd TermOpen * call s:IndentLinesDisable() | call s:LeadingSpaceDisable() | call s:Setup()
+        else
+            autocmd TerminalOpen * call s:IndentLinesDisable() | call s:LeadingSpaceDisable() | call s:Setup()
+        endif
+
         autocmd FileType * call s:Disable()
         if exists("##OptionSet")
             autocmd OptionSet diff call s:ToggleOnDiff()
@@ -424,7 +431,14 @@ augroup indentLine
         endif
         autocmd VimEnter * call s:VimEnter()
     else
-        autocmd BufWinEnter * call s:Setup()
+        autocmd BufWinEnter,BufEnter * call s:Setup()
+
+        if has("nvim")
+            autocmd TermOpen * call s:Setup()
+        else
+            autocmd TerminalOpen * call s:Setup()
+        endif
+
         autocmd User * if exists("b:indentLine_enabled") || exists("b:indentLine_leadingSpaceEnabled") |
                         \ call s:Setup() | endif
         autocmd BufRead,BufNewFile,ColorScheme,Syntax * call s:InitColor()
