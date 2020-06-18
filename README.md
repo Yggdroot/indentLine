@@ -6,6 +6,8 @@ This plugin is used for displaying thin vertical lines at each indentation level
 ## Requirements
 This plugin takes advantage of the newly provided `conceal` feature in Vim 7.3, so this plugin will not work with lower versions of Vim.
 
+MacOS users: The copy of Vim provided in MacOS may not have the conceal feature enabled (check with `echo has('conceal')`), which will prevent the plugin from loading. To fix this, we recommend using the homebrew version of Vim.
+
 ## Installation
 If you are using VIM version 8 or higher you can use its built-in package management; see `:help packages` for more information. Just run these commands in your terminal:
 ```bash
