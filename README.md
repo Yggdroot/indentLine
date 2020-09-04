@@ -9,8 +9,8 @@ This plugin takes advantage of the newly provided `conceal` feature in Vim 7.3, 
 ## Installation
 If you are using VIM version 8 or higher you can use its built-in package management; see `:help packages` for more information. Just run these commands in your terminal:
 ```bash
-git clone https://github.com/Yggdroot/indentLine.git ~/.vim/pack/vendor/start/indentLint
-vim -u NONE -c "helptags  ~/.vim/pack/vendor/start/indentLint/doc" -c "q"
+git clone https://github.com/Yggdroot/indentLine.git ~/.vim/pack/vendor/start/indentLine
+vim -u NONE -c "helptags  ~/.vim/pack/vendor/start/indentLine/doc" -c "q"
 ```
 
 Otherwise, these are some of the other options:
@@ -29,7 +29,7 @@ indentLine will overwrite 'conceal' color with grey by default. If you want to h
 let g:indentLine_setColors = 0
 ```
 
-Or you can customize conceal color by: 
+Or you can customize conceal color by:
 ```vim
 " Vim
 let g:indentLine_color_term = 239
