@@ -307,11 +307,7 @@ endfunction
 
 "{{{1 function! s:Disable()
 function! s:Disable()
-    if exists("b:indentLine_enabled") && b:indentLine_enabled
-        return
-    elseif exists("b:indentLine_leadingSpaceEnabled") && b:indentLine_leadingSpaceEnabled
-        return
-    elseif s:Filter() == 0
+    if s:Filter() == 0
         call s:IndentLinesDisable()
         call s:LeadingSpaceDisable()
     endif
