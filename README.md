@@ -31,6 +31,11 @@ indentLine will overwrite 'conceal' color with grey by default. If you want to h
 let g:indentLine_setColors = 0
 ```
 
+Or you can use the same colors as another highlight group. To use the same colors that are used for tab indents, use the 'SpecialKey' group:
+```vim
+let g:indentLine_defaultGroup = 'SpecialKey'
+```
+
 Or you can customize conceal color by:
 ```vim
 " Vim
