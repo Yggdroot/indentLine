@@ -439,15 +439,15 @@ augroup END
 command! -nargs=? IndentLinesReset call s:ResetWidth(<f-args>)
 command! IndentLinesToggle call s:IndentLinesToggle()
 if g:indentLine_newVersion
-    command! IndentLinesEnable let b:indentLine_enabled = 1 | call s:IndentLinesEnable()
-    command! IndentLinesDisable let b:indentLine_enabled = 0 | call s:IndentLinesDisable()
-    command! LeadingSpaceEnable let b:indentLine_leadingSpaceEnabled = 1 | call s:LeadingSpaceEnable()
-    command! LeadingSpaceDisable let b:indentLine_leadingSpaceEnabled = 0 | call s:LeadingSpaceDisable()
+    command! -bar IndentLinesEnable let b:indentLine_enabled = 1 | call s:IndentLinesEnable()
+    command! -bar IndentLinesDisable let b:indentLine_enabled = 0 | call s:IndentLinesDisable()
+    command! -bar LeadingSpaceEnable let b:indentLine_leadingSpaceEnabled = 1 | call s:LeadingSpaceEnable()
+    command! -bar LeadingSpaceDisable let b:indentLine_leadingSpaceEnabled = 0 | call s:LeadingSpaceDisable()
 else
-    command! IndentLinesEnable call s:IndentLinesEnable()
-    command! IndentLinesDisable call s:IndentLinesDisable()
-    command! LeadingSpaceEnable call s:LeadingSpaceEnable()
-    command! LeadingSpaceDisable call s:LeadingSpaceDisable()
+    command! -bar IndentLinesEnable call s:IndentLinesEnable()
+    command! -bar IndentLinesDisable call s:IndentLinesDisable()
+    command! -bar LeadingSpaceEnable call s:LeadingSpaceEnable()
+    command! -bar LeadingSpaceDisable call s:LeadingSpaceDisable()
 endif
 command! LeadingSpaceToggle call s:LeadingSpaceToggle()
 
