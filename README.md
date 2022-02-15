@@ -71,7 +71,8 @@ each indent level has a distinct character.
 
 This plugin enables the Vim `conceal` feature which automatically hides stretches of text based on syntax highlighting. This setting will apply to all syntax items.
 
-For example, users utilizing the built in json.vim syntax file will no longer see quotation marks in their JSON files.
+For example, users utilizing the built in json.vim syntax file will no longer see quotation marks in their JSON files
+(see below how to disable conceal for JSON without disabling indentLine).
 
 indentLine will overwrite your "concealcursor" and "conceallevel" with default value:
 
@@ -89,6 +90,30 @@ let g:indentLine_setConceal = 0
 
 See the [VIM Reference Manual](http://vimdoc.sourceforge.net/htmldoc/version7.html#new-conceal) for more information on the `conceal` feature.
 
+
+**Disabling conceal for JSON and Markdown without disabling indentLine plugin**
+
+Even though this plugin requires conceal to be enabled for it to work, it is
+possible to disable conceal for JSON and Markdown files and still get the
+indentLine plugin to show indent lines for those files.
+
+Builtin [json.vim](https://github.com/vim/vim/blob/master/runtime/syntax/json.vim)
+and [markdown.vim](https://github.com/vim/vim/blob/master/runtime/syntax/markdown.vim)
+syntax allow disabling conceal by setting the following vars:
+
+* JSON
+```vim
+let g:vim_json_conceal=0
+```
+
+* Markdown
+```vim
+let g:markdown_syntax_conceal=0
+```
+
+If you use other syntax plugins for those file types, you will need to check
+their docs, as they may use different vars or have different ways to configure
+this.
 
 **Disable by default**
 ```vim
