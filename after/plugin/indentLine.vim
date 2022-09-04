@@ -5,7 +5,12 @@
 
 scriptencoding utf-8
 
-if !has("conceal") || exists("g:indentLine_loaded")
+if !has("conceal")
+    echoerr "conceal is invalid. To use the plugin, please enable the conceal"
+    finish
+endif
+
+if exists("g:indentLine_loaded")
     finish
 endif
 let g:indentLine_loaded = 1
