@@ -442,7 +442,7 @@ augroup END
 
 "{{{1 commands
 command! -nargs=? IndentLinesReset call s:ResetWidth(<f-args>)
-command! IndentLinesToggle call s:IndentLinesToggle()
+command! -bar IndentLinesToggle call s:IndentLinesToggle()
 if g:indentLine_newVersion
     command! -bar IndentLinesEnable let b:indentLine_enabled = 1 | call s:IndentLinesEnable()
     command! -bar IndentLinesDisable let b:indentLine_enabled = 0 | call s:IndentLinesDisable()
