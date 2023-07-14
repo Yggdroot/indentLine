@@ -21,7 +21,6 @@ let g:indentLine_char = get(g:, 'indentLine_char', (&encoding ==# "utf-8" && &te
 let g:indentLine_char_list = get(g:, 'indentLine_char_list', [])
 let g:indentLine_first_char = get(g:, 'indentLine_first_char', (&encoding ==# "utf-8" && &term isnot# "linux" ? '¦' : '|'))
 let g:indentLine_indentLevel = get(g:, 'indentLine_indentLevel', 20)
-let g:indentLine_indentSpace = get(g:, 'indentLine_indentSpace', &l:shiftwidth == 0 ? &l:tabstop : &l:shiftwidth)
 let g:indentLine_enabled = get(g:, 'indentLine_enabled', 1)
 let g:indentLine_fileType = get(g:, 'indentLine_fileType', [])
 let g:indentLine_fileTypeExclude = get(g:, 'indentLine_fileTypeExclude', ['leaderf'])
@@ -152,6 +151,7 @@ endfunction
 
 "{{{1 function! s:IndentLinesEnable()
 function! s:IndentLinesEnable()
+    let s:indentSpace = get(g:, 'indentLine_indentSpace', &l:shiftwidth == 0 ? &l:tabstop : &l:shiftwidth)
     if g:indentLine_newVersion
         if exists("b:indentLine_enabled") && b:indentLine_enabled == 0
             return
@@ -169,7 +169,7 @@ function! s:IndentLinesEnable()
 
         let n = len(g:indentLine_char_list)
         let level = 0
-        for i in range(g:indentLine_indentSpace+1, g:indentLine_indentSpace * g:indentLine_indentLevel + 1, g:indentLine_indentSpace)
+        for i in range(s:indentSpace+1, s:indentSpace * g:indentLine_indentLevel + 1, s:indentSpace)
             if n > 0
                 let char = g:indentLine_char_list[level % n]
                 let level += 1
@@ -198,11 +198,11 @@ function! s:IndentLinesEnable()
 
     if g:indentLine_faster
         execute 'syntax match IndentLineSpace /^\s\+/ containedin=ALL contains=IndentLine'
-        execute 'syntax match IndentLine / \{'.(g:indentLine_indentSpace-1).'}\zs / contained conceal cchar=' . g:indentLine_char
+        execute 'syntax match IndentLine / \{'.(s:indentSpace-1).'}\zs / contained conceal cchar=' . g:indentLine_char
         execute 'syntax match IndentLine /\t\zs / contained conceal cchar=' . g:indentLine_char
     else
         let pattern = line('$') < g:indentLine_maxLines ? 'v' : 'c'
-        for i in range(g:indentLine_indentSpace+1, g:indentLine_indentSpace * g:indentLine_indentLevel + 1, g:indentLine_indentSpace)
+        for i in range(s:indentSpace+1, s:indentSpace * s:indentLine_indentLevel + 1, s:indentSpace)
             execute 'syntax match IndentLine /\%(^\s\+\)\@<=\%'.i.pattern.' / containedin=ALL conceal cchar=' . g:indentLine_char
         endfor
     endif
